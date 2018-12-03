@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83d1f989-5701-45cb-b599-3d3025d74316" name="Default Changelist" comment="" />
+    <list default="true" id="83d1f989-5701-45cb-b599-3d3025d74316" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/start.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/stop.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/stop.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/im/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/im/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/im/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/im/status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/logs/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/logs/main.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,63 +17,222 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cmd/start.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="671">
-              <caret line="105" column="43" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
+            <state relative-caret-position="314">
+              <caret line="33" column="26" lean-forward="true" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/os/exec/exec.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="310" selection-start-line="310" selection-end-line="310" />
               <folding>
-                <element signature="e#618#775#0" expanded="true" />
+                <element signature="n#!!doc" />
+                <element signature="e#160#235#0" />
+                <element signature="e#1187#1258#0" />
+                <element signature="e#1285#1408#0" />
+                <element signature="e#1441#1508#0" />
+                <element signature="e#1510#1570#0" />
+                <element signature="e#1669#4950#0" />
+                <element signature="e#1679#1721#0" />
+                <element signature="e#1868#1939#0" />
+                <element signature="e#2084#2132#0" />
+                <element signature="e#2388#2442#0" />
+                <element signature="e#2558#2606#0" />
+                <element signature="e#3157#3226#0" />
+                <element signature="e#3908#3976#0" />
+                <element signature="e#4192#4260#0" />
+                <element signature="e#4441#4502#0" />
+                <element signature="e#4952#5019#0" />
+                <element signature="e#5575#5800#0" />
+                <element signature="e#5589#5647#0" />
+                <element signature="e#5680#5786#0" />
+                <element signature="e#5725#5755#0" />
+                <element signature="e#5761#5783#0" />
+                <element signature="e#5802#5859#0" />
+                <element signature="e#6093#6196#0" />
+                <element signature="e#6110#6137#0" />
+                <element signature="e#6198#6268#0" />
+                <element signature="e#6368#6419#0" />
+                <element signature="e#6384#6400#0" />
+                <element signature="e#6451#6512#0" />
+                <element signature="e#6470#6489#0" />
+                <element signature="e#6544#6613#0" />
+                <element signature="e#6566#6586#0" />
+                <element signature="e#6615#6682#0" />
+                <element signature="e#6908#7522#0" />
+                <element signature="e#6929#7056#0" />
+                <element signature="e#6978#6993#0" />
+                <element signature="e#7094#7114#0" />
+                <element signature="e#7157#7170#0" />
+                <element signature="e#7320#7503#0" />
+                <element signature="e#7413#7431#0" />
+                <element signature="e#7468#7487#0" />
+                <element signature="e#7571#7611#0" />
+                <element signature="e#7660#7793#0" />
+                <element signature="e#7720#7754#0" />
+                <element signature="e#7863#8405#0" />
+                <element signature="e#7878#8025#0" />
+                <element signature="e#7947#7962#0" />
+                <element signature="e#8057#8077#0" />
+                <element signature="e#8120#8133#0" />
+                <element signature="e#8283#8386#0" />
+                <element signature="e#8459#8508#0" />
+                <element signature="e#8489#8506#0" />
+                <element signature="e#8510#8575#0" />
+                <element signature="e#9159#9230#0" />
+                <element signature="e#9194#9211#0" />
+                <element signature="e#9232#9295#0" />
+                <element signature="e#9483#9978#0" />
+                <element signature="e#9517#9555#0" />
+                <element signature="e#9570#9598#0" />
+                <element signature="e#9635#9663#0" />
+                <element signature="e#9713#9741#0" />
+                <element signature="e#9888#9909#0" />
+                <element signature="e#9980#10055#0" />
+                <element signature="e#10192#11779#0" />
+                <element signature="e#10219#10325#0" />
+                <element signature="e#10356#10534#0" />
+                <element signature="e#10417#10517#0" />
+                <element signature="e#10556#10605#0" />
+                <element signature="e#10623#10779#0" />
+                <element signature="e#10627#10776#0" />
+                <element signature="e#10638#10761#0" />
+                <element signature="e#10846#10890#0" />
+                <element signature="e#10891#11078#0" />
+                <element signature="e#10933#11033#0" />
+                <element signature="e#11213#11309#0" />
+                <element signature="e#11326#11422#0" />
+                <element signature="e#11542#11602#0" />
+                <element signature="e#11571#11595#0" />
+                <element signature="e#11621#11764#0" />
+                <element signature="e#11670#11759#0" />
+                <element signature="e#11675#11755#0" />
+                <element signature="e#11687#11728#0" />
+                <element signature="e#11855#12356#0" />
+                <element signature="e#11884#11946#0" />
+                <element signature="e#12393#12428#0" />
+                <element signature="e#12430#12496#0" />
+                <element signature="e#13151#13709#0" />
+                <element signature="e#13174#13219#0" />
+                <element signature="e#13235#13292#0" />
+                <element signature="e#13367#13391#0" />
+                <element signature="e#13461#13544#0" />
+                <element signature="e#13517#13541#0" />
+                <element signature="e#13600#13617#0" />
+                <element signature="e#13643#13688#0" />
+                <element signature="e#13711#13770#0" />
+                <element signature="e#13927#14324#0" />
+                <element signature="e#13949#14006#0" />
+                <element signature="e#14099#14148#0" />
+                <element signature="e#14195#14294#0" />
+                <element signature="e#14233#14291#0" />
+                <element signature="e#14326#14394#0" />
+                <element signature="e#14472#14720#0" />
+                <element signature="e#14494#14551#0" />
+                <element signature="e#14572#14629#0" />
+                <element signature="e#14722#14789#0" />
+                <element signature="e#15148#15541#0" />
+                <element signature="e#15169#15225#0" />
+                <element signature="e#15247#15317#0" />
+                <element signature="e#15359#15381#0" />
+                <element signature="e#15558#15607#0" />
+                <element signature="e#15643#15680#0" />
+                <element signature="e#15710#15737#0" />
+                <element signature="e#15739#15807#0" />
+                <element signature="e#16245#16614#0" />
+                <element signature="e#16267#16324#0" />
+                <element signature="e#16346#16417#0" />
+                <element signature="e#16459#16481#0" />
+                <element signature="e#16616#16684#0" />
+                <element signature="e#17131#17500#0" />
+                <element signature="e#17153#17210#0" />
+                <element signature="e#17232#17303#0" />
+                <element signature="e#17345#17367#0" />
+                <element signature="e#17502#17570#0" />
+                <element signature="e#17701#18239#0" />
+                <element signature="e#17898#17970#0" />
+                <element signature="e#18304#18798#0" />
+                <element signature="e#18439#18491#0" />
+                <element signature="e#18605#18778#0" />
+                <element signature="e#18751#18775#0" />
+                <element signature="e#18800#18872#0" />
+                <element signature="e#19011#19151#0" />
+                <element signature="e#19055#19139#0" />
+                <element signature="e#19196#19604#0" />
+                <element signature="e#19218#19240#0" />
+                <element signature="e#19260#19303#0" />
+                <element signature="e#19632#19671#0" />
+                <element signature="e#19644#19659#0" />
+                <element signature="e#19673#19747#0" />
+                <element signature="e#19883#19939#0" />
+                <element signature="e#19941#20000#0" />
+                <element signature="e#20124#20526#0" />
+                <element signature="e#20236#20512#0" />
+                <element signature="e#20281#20323#0" />
+                <element signature="e#20360#20391#0" />
+                <element signature="e#20428#20465#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmd/stop.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+              <folding>
+                <element signature="e#618#662#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/syscall/syscall_darwin.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="229" column="5" selection-start-line="229" selection-start-column="5" selection-end-line="229" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/encoding/binary/binary.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="123" selection-start-line="123" selection-end-line="123" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="181">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="e#13#160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/internal/im/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+            <state relative-caret-position="422">
+              <caret line="151" column="21" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
               <folding>
-                <element signature="e#12#176#0" expanded="true" />
+                <element signature="e#12#215#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/internal/im/status.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmd/root.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/internal/im/payload.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/internal/logs/main.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -84,12 +251,17 @@
     <findStrings>
       <find>baseFilePath</find>
       <find>A longer description that spans multiple lines and likely contains</find>
+      <find>&quot;%p&quot;</find>
+      <find>exit status 1</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.11.2/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
@@ -103,14 +275,16 @@
         <option value="$PROJECT_DIR$/cmd/version.go" />
         <option value="$PROJECT_DIR$/config/main.go" />
         <option value="$PROJECT_DIR$/cmd/root.go" />
-        <option value="$PROJECT_DIR$/internal/im/status.go" />
         <option value="$PROJECT_DIR$/internal/log/main.go" />
-        <option value="$PROJECT_DIR$/internal/logs/main.go" />
         <option value="$PROJECT_DIR$/internal/im/payload.go" />
         <option value="$PROJECT_DIR$/database/redis.go" />
         <option value="$PROJECT_DIR$/.socket.yaml" />
-        <option value="$PROJECT_DIR$/cmd/start.go" />
+        <option value="$PROJECT_DIR$/internal/im/status.go" />
+        <option value="$PROJECT_DIR$/internal/logs/main.go" />
         <option value="$PROJECT_DIR$/internal/im/main.go" />
+        <option value="$PROJECT_DIR$/api/main.go" />
+        <option value="$PROJECT_DIR$/cmd/stop.go" />
+        <option value="$PROJECT_DIR$/cmd/start.go" />
       </list>
     </option>
   </component>
@@ -119,6 +293,7 @@
     <option name="width" value="1274" />
     <option name="height" value="1440" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -140,29 +315,7 @@
             <path>
               <item name="socket" type="b2602c69:ProjectViewProjectNode" />
               <item name="socket" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socket" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socket" type="462c0819:PsiDirectoryNode" />
               <item name="internal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socket" type="462c0819:PsiDirectoryNode" />
-              <item name="internal" type="462c0819:PsiDirectoryNode" />
-              <item name="im" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="socket" type="462c0819:PsiDirectoryNode" />
-              <item name="internal" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socket" type="b2602c69:ProjectViewProjectNode" />
@@ -221,7 +374,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31128684" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.27534148" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32986626" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -237,13 +390,6 @@
     <proxy>direct</proxy>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/syscall/syscall_unix.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="23" column="66" lean-forward="true" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/syscall/exec_bsd.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
@@ -377,21 +523,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/os/exec/exec.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="341" column="14" selection-start-line="341" selection-start-column="14" selection-end-line="341" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gonne.lock" />
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/io/ioutil/ioutil.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/spf13/cobra@v0.0.3/cobra.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -461,23 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/restart.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/internal/logs/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/internal/im/payload.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/net/http/server.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -492,54 +607,739 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/root.go">
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/net/net.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="767">
+          <caret line="474" lean-forward="true" selection-start-line="474" selection-end-line="474" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#160#3021#0" />
+            <element signature="e#3124#3184#0" />
+            <element signature="e#3295#3442#0" />
+            <element signature="e#3444#3491#0" />
+            <element signature="e#3699#3875#0" />
+            <element signature="e#3877#3933#0" />
+            <element signature="e#4028#4067#0" />
+            <element signature="e#4248#4287#0" />
+            <element signature="e#4471#4502#0" />
+            <element signature="e#4737#4796#0" />
+            <element signature="e#5479#5537#0" />
+            <element signature="e#5670#5730#0" />
+            <element signature="e#6590#6687#0" />
+            <element signature="e#6608#6684#0" />
+            <element signature="e#6767#6957#0" />
+            <element signature="e#6781#6809#0" />
+            <element signature="e#6846#6943#0" />
+            <element signature="e#6864#6940#0" />
+            <element signature="e#6959#7006#0" />
+            <element signature="e#7127#7179#0" />
+            <element signature="e#7141#7158#0" />
+            <element signature="e#7181#7230#0" />
+            <element signature="e#7353#7405#0" />
+            <element signature="e#7367#7384#0" />
+            <element signature="e#7508#7697#0" />
+            <element signature="e#7522#7550#0" />
+            <element signature="e#7594#7683#0" />
+            <element signature="e#7613#7680#0" />
+            <element signature="e#7812#8005#0" />
+            <element signature="e#7826#7854#0" />
+            <element signature="e#7902#7991#0" />
+            <element signature="e#7921#7988#0" />
+            <element signature="e#8123#8317#0" />
+            <element signature="e#8137#8165#0" />
+            <element signature="e#8214#8303#0" />
+            <element signature="e#8233#8300#0" />
+            <element signature="e#8319#8375#0" />
+            <element signature="e#8472#8668#0" />
+            <element signature="e#8486#8514#0" />
+            <element signature="e#8565#8654#0" />
+            <element signature="e#8584#8651#0" />
+            <element signature="e#8670#8727#0" />
+            <element signature="e#8826#9023#0" />
+            <element signature="e#8840#8868#0" />
+            <element signature="e#8920#9009#0" />
+            <element signature="e#8939#9006#0" />
+            <element signature="e#9025#9073#0" />
+            <element signature="e#9444#9588#0" />
+            <element signature="e#9482#9578#0" />
+            <element signature="e#9500#9575#0" />
+            <element signature="e#9590#9652#0" />
+            <element signature="e#9746#12111#0" />
+            <element signature="e#9759#9806#0" />
+            <element signature="e#10325#10375#0" />
+            <element signature="e#10639#10670#0" />
+            <element signature="e#10840#10899#0" />
+            <element signature="e#11594#11656#0" />
+            <element signature="e#11797#11859#0" />
+            <element signature="e#12157#12231#0" />
+            <element signature="e#12321#12609#0" />
+            <element signature="e#12429#12458#0" />
+            <element signature="e#12662#12772#0" />
+            <element signature="e#12814#13204#0" />
+            <element signature="e#13206#13275#0" />
+            <element signature="e#13442#13587#0" />
+            <element signature="e#13445#13585#0" />
+            <element signature="e#13459#13502#0" />
+            <element signature="e#13504#13559#0" />
+            <element signature="e#13561#13582#0" />
+            <element signature="e#13589#13658#0" />
+            <element signature="e#13754#14515#0" />
+            <element signature="e#13764#13818#0" />
+            <element signature="e#13855#13911#0" />
+            <element signature="e#13955#14016#0" />
+            <element signature="e#14113#14174#0" />
+            <element signature="e#14550#14841#0" />
+            <element signature="e#14565#14586#0" />
+            <element signature="e#14614#14637#0" />
+            <element signature="e#14658#14693#0" />
+            <element signature="e#14712#14802#0" />
+            <element signature="e#14735#14753#0" />
+            <element signature="e#14759#14776#0" />
+            <element signature="e#14843#15156#0" />
+            <element signature="e#14850#14911#0" />
+            <element signature="e#14982#15034#0" />
+            <element signature="e#15171#15200#0" />
+            <element signature="e#15235#15393#0" />
+            <element signature="e#15280#15339#0" />
+            <element signature="e#15410#15441#0" />
+            <element signature="e#15478#15821#0" />
+            <element signature="e#15481#15542#0" />
+            <element signature="e#15637#15655#0" />
+            <element signature="e#15700#15763#0" />
+            <element signature="e#15909#16077#0" />
+            <element signature="e#15919#15975#0" />
+            <element signature="e#16115#16161#0" />
+            <element signature="e#16178#16214#0" />
+            <element signature="e#16251#16370#0" />
+            <element signature="e#16266#16287#0" />
+            <element signature="e#16317#16358#0" />
+            <element signature="e#16409#16425#0" />
+            <element signature="e#16463#16479#0" />
+            <element signature="e#16560#16601#0" />
+            <element signature="e#16648#16664#0" />
+            <element signature="e#16711#16727#0" />
+            <element signature="e#16802#16822#0" />
+            <element signature="e#16866#16882#0" />
+            <element signature="e#16926#16942#0" />
+            <element signature="e#16944#17022#0" />
+            <element signature="e#17088#17109#0" />
+            <element signature="e#17153#17208#0" />
+            <element signature="e#17251#17267#0" />
+            <element signature="e#17310#17326#0" />
+            <element signature="e#17479#17756#0" />
+            <element signature="e#17792#17933#0" />
+            <element signature="e#17807#17828#0" />
+            <element signature="e#17873#17902#0" />
+            <element signature="e#17935#18004#0" />
+            <element signature="e#18165#18187#0" />
+            <element signature="e#18189#18257#0" />
+            <element signature="e#18430#18469#0" />
+            <element signature="e#18487#18508#0" />
+            <element signature="e#18510#18585#0" />
+            <element signature="e#18669#18764#0" />
+            <element signature="e#18766#18829#0" />
+            <element signature="e#19181#19301#0" />
+            <element signature="e#19205#19271#0" />
+            <element signature="e#19324#19342#0" />
+            <element signature="e#19344#19413#0" />
+            <element signature="e#19603#19655#0" />
+            <element signature="e#19657#19713#0" />
+            <element signature="e#19884#19957#0" />
+            <element signature="e#20019#20243#0" />
+            <element signature="e#20057#20089#0" />
+            <element signature="e#20112#20212#0" />
+            <element signature="e#20171#20209#0" />
+            <element signature="e#20297#20452#0" />
+            <element signature="e#20330#20405#0" />
+            <element signature="e#20423#20442#0" />
+            <element signature="e#20489#20624#0" />
+            <element signature="e#20508#20622#0" />
+            <element signature="e#20552#20592#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/gorilla/websocket@v1.4.0/conn.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="249" column="21" lean-forward="true" selection-start-line="249" selection-start-column="21" selection-end-line="249" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#326#790#0" />
+            <element signature="e#842#1369#0" />
+            <element signature="e#1431#2099#0" />
+            <element signature="e#1440#1511#0" />
+            <element signature="e#1644#1713#0" />
+            <element signature="e#1855#1930#0" />
+            <element signature="e#1977#2052#0" />
+            <element signature="e#2101#2173#0" />
+            <element signature="e#2275#2349#0" />
+            <element signature="e#2514#2574#0" />
+            <element signature="e#2612#2628#0" />
+            <element signature="e#2665#2687#0" />
+            <element signature="e#2724#2744#0" />
+            <element signature="e#2804#2924#0" />
+            <element signature="e#2962#3992#0" />
+            <element signature="e#3044#3898#0" />
+            <element signature="e#3061#3117#0" />
+            <element signature="e#3119#3175#0" />
+            <element signature="e#3177#3241#0" />
+            <element signature="e#3243#3311#0" />
+            <element signature="e#3313#3375#0" />
+            <element signature="e#3377#3445#0" />
+            <element signature="e#3447#3527#0" />
+            <element signature="e#3529#3597#0" />
+            <element signature="e#3599#3664#0" />
+            <element signature="e#3666#3748#0" />
+            <element signature="e#3750#3825#0" />
+            <element signature="e#3827#3895#0" />
+            <element signature="e#3916#3972#0" />
+            <element signature="e#3994#4071#0" />
+            <element signature="e#4156#4292#0" />
+            <element signature="e#4193#4276#0" />
+            <element signature="e#4224#4273#0" />
+            <element signature="e#4247#4269#0" />
+            <element signature="e#4294#4369#0" />
+            <element signature="e#4498#4657#0" />
+            <element signature="e#4535#4641#0" />
+            <element signature="e#4574#4624#0" />
+            <element signature="e#4597#4620#0" />
+            <element signature="e#4659#5079#0" />
+            <element signature="e#4700#4765#0" />
+            <element signature="e#4803#4866#0" />
+            <element signature="e#5107#5199#0" />
+            <element signature="e#5144#5197#0" />
+            <element signature="e#5235#5361#0" />
+            <element signature="e#5287#5347#0" />
+            <element signature="e#5306#5344#0" />
+            <element signature="e#5398#5491#0" />
+            <element signature="e#5525#5591#0" />
+            <element signature="e#5635#6244#0" />
+            <element signature="e#6291#6366#0" />
+            <element signature="e#6368#6446#0" />
+            <element signature="e#6535#6691#0" />
+            <element signature="e#6693#6769#0" />
+            <element signature="e#6887#6907#0" />
+            <element signature="e#8441#9444#0" />
+            <element signature="e#8458#8734#0" />
+            <element signature="e#8485#8532#0" />
+            <element signature="e#8585#8682#0" />
+            <element signature="e#8761#8808#0" />
+            <element signature="e#8895#8942#0" />
+            <element signature="e#8993#9362#0" />
+            <element signature="e#9576#9652#0" />
+            <element signature="e#9706#9732#0" />
+            <element signature="e#9818#9848#0" />
+            <element signature="e#9937#9968#0" />
+            <element signature="e#10031#10160#0" />
+            <element signature="e#10100#10123#0" />
+            <element signature="e#10205#10317#0" />
+            <element signature="e#10249#10278#0" />
+            <element signature="e#10400#10796#0" />
+            <element signature="e#10424#10440#0" />
+            <element signature="e#10522#10539#0" />
+            <element signature="e#10595#10629#0" />
+            <element signature="e#10635#10671#0" />
+            <element signature="e#10687#10718#0" />
+            <element signature="e#10749#10782#0" />
+            <element signature="e#10798#10875#0" />
+            <element signature="e#11024#12091#0" />
+            <element signature="e#11054#11085#0" />
+            <element signature="e#11129#11165#0" />
+            <element signature="e#11242#11262#0" />
+            <element signature="e#11378#11411#0" />
+            <element signature="e#11417#11532#0" />
+            <element signature="e#11580#11658#0" />
+            <element signature="e#11624#11655#0" />
+            <element signature="e#11688#11770#0" />
+            <element signature="e#11698#11725#0" />
+            <element signature="e#11727#11767#0" />
+            <element signature="e#11785#11801#0" />
+            <element signature="e#11883#11900#0" />
+            <element signature="e#11980#12011#0" />
+            <element signature="e#12044#12077#0" />
+            <element signature="e#12141#12769#0" />
+            <element signature="e#12144#12215#0" />
+            <element signature="e#12364#12404#0" />
+            <element signature="e#12458#12489#0" />
+            <element signature="e#12569#12586#0" />
+            <element signature="e#12610#12755#0" />
+            <element signature="e#12667#12696#0" />
+            <element signature="e#12702#12752#0" />
+            <element signature="e#12771#12850#0" />
+            <element signature="e#13232#13631#0" />
+            <element signature="e#13282#13304#0" />
+            <element signature="e#13327#13406#0" />
+            <element signature="e#13507#13607#0" />
+            <element signature="e#13652#13853#0" />
+            <element signature="e#13902#13972#0" />
+            <element signature="e#13921#13958#0" />
+            <element signature="e#13974#14049#0" />
+            <element signature="e#14189#16189#0" />
+            <element signature="e#14371#14416#0" />
+            <element signature="e#14453#14474#0" />
+            <element signature="e#14490#14510#0" />
+            <element signature="e#14563#14583#0" />
+            <element signature="e#14676#14746#0" />
+            <element signature="e#14749#15186#0" />
+            <element signature="e#14759#14914#0" />
+            <element signature="e#14916#15084#0" />
+            <element signature="e#15086#15183#0" />
+            <element signature="e#15204#15455#0" />
+            <element signature="e#15356#15452#0" />
+            <element signature="e#15458#15526#0" />
+            <element signature="e#15643#15699#0" />
+            <element signature="e#15820#15876#0" />
+            <element signature="e#15914#15940#0" />
+            <element signature="e#15952#16087#0" />
+            <element signature="e#15995#16071#0" />
+            <element signature="e#16243#16440#0" />
+            <element signature="e#16288#16396#0" />
+            <element signature="e#16339#16361#0" />
+            <element signature="e#16409#16423#0" />
+            <element signature="e#16495#16899#0" />
+            <element signature="e#16514#16536#0" />
+            <element signature="e#16587#16717#0" />
+            <element signature="e#16671#16693#0" />
+            <element signature="e#16749#16881#0" />
+            <element signature="e#16795#16817#0" />
+            <element signature="e#16960#17183#0" />
+            <element signature="e#16979#17001#0" />
+            <element signature="e#17033#17165#0" />
+            <element signature="e#17079#17101#0" />
+            <element signature="e#17253#17582#0" />
+            <element signature="e#17272#17294#0" />
+            <element signature="e#17300#17564#0" />
+            <element signature="e#17334#17407#0" />
+            <element signature="e#17387#17403#0" />
+            <element signature="e#17506#17561#0" />
+            <element signature="e#17528#17548#0" />
+            <element signature="e#17622#17763#0" />
+            <element signature="e#17641#17660#0" />
+            <element signature="e#17708#17725#0" />
+            <element signature="e#17893#18420#0" />
+            <element signature="e#17944#18125#0" />
+            <element signature="e#18142#18159#0" />
+            <element signature="e#18176#18232#0" />
+            <element signature="e#18329#18385#0" />
+            <element signature="e#18422#18495#0" />
+            <element signature="e#18607#19147#0" />
+            <element signature="e#18689#18999#0" />
+            <element signature="e#18794#18813#0" />
+            <element signature="e#18835#18890#0" />
+            <element signature="e#19053#19070#0" />
+            <element signature="e#19110#19127#0" />
+            <element signature="e#19149#19218#0" />
+            <element signature="e#19446#19482#0" />
+            <element signature="e#19544#23124#0" />
+            <element signature="e#19612#19720#0" />
+            <element signature="e#19689#19717#0" />
+            <element signature="e#19814#19840#0" />
+            <element signature="e#20052#20101#0" />
+            <element signature="e#20161#20272#0" />
+            <element signature="e#20275#20968#0" />
+            <element signature="e#20295#20552#0" />
+            <element signature="e#20390#20466#0" />
+            <element signature="e#20479#20552#0" />
+            <element signature="e#20554#20717#0" />
+            <element signature="e#20605#20695#0" />
+            <element signature="e#20719#20870#0" />
+            <element signature="e#20760#20848#0" />
+            <element signature="e#20872#20965#0" />
+            <element signature="e#21008#21299#0" />
+            <element signature="e#21034#21164#0" />
+            <element signature="e#21082#21110#0" />
+            <element signature="e#21166#21296#0" />
+            <element signature="e#21214#21242#0" />
+            <element signature="e#21354#21421#0" />
+            <element signature="e#21432#21568#0" />
+            <element signature="e#21509#21537#0" />
+            <element signature="e#21732#21988#0" />
+            <element signature="e#21820#21960#0" />
+            <element signature="e#22070#22249#0" />
+            <element signature="e#22156#22184#0" />
+            <element signature="e#22201#22246#0" />
+            <element signature="e#22291#23098#0" />
+            <element signature="e#22311#22411#0" />
+            <element signature="e#22383#22411#0" />
+            <element signature="e#22413#22513#0" />
+            <element signature="e#22485#22513#0" />
+            <element signature="e#22515#23095#0" />
+            <element signature="e#22612#22942#0" />
+            <element signature="e#22710#22780#0" />
+            <element signature="e#22851#22938#0" />
+            <element signature="e#23003#23031#0" />
+            <element signature="e#23061#23095#0" />
+            <element signature="e#23183#23336#0" />
+            <element signature="e#23338#23409#0" />
+            <element signature="e#23967#24869#0" />
+            <element signature="e#24049#24089#0" />
+            <element signature="e#24155#24509#0" />
+            <element signature="e#24210#24256#0" />
+            <element signature="e#24317#24506#0" />
+            <element signature="e#24411#24467#0" />
+            <element signature="e#24512#24586#0" />
+            <element signature="e#24774#24834#0" />
+            <element signature="e#24890#24907#0" />
+            <element signature="e#24961#25882#0" />
+            <element signature="e#24998#25021#0" />
+            <element signature="e#25045#25774#0" />
+            <element signature="e#25073#25443#0" />
+            <element signature="e#25113#25147#0" />
+            <element signature="e#25223#25296#0" />
+            <element signature="e#25377#25416#0" />
+            <element signature="e#25462#25512#0" />
+            <element signature="e#25553#25771#0" />
+            <element signature="e#25564#25612#0" />
+            <element signature="e#25615#25767#0" />
+            <element signature="e#25836#25865#0" />
+            <element signature="e#25922#25937#0" />
+            <element signature="e#25939#26014#0" />
+            <element signature="e#26124#26289#0" />
+            <element signature="e#26196#26231#0" />
+            <element signature="e#26291#26370#0" />
+            <element signature="e#26593#26630#0" />
+            <element signature="e#26632#26708#0" />
+            <element signature="e#26877#26901#0" />
+            <element signature="e#27017#27042#0" />
+            <element signature="e#27044#27122#0" />
+            <element signature="e#27930#28141#0" />
+            <element signature="e#27945#28120#0" />
+            <element signature="e#27987#28117#0" />
+            <element signature="e#28247#28271#0" />
+            <element signature="e#28273#28349#0" />
+            <element signature="e#28761#29059#0" />
+            <element signature="e#28776#29039#0" />
+            <element signature="e#28811#29036#0" />
+            <element signature="e#28921#28942#0" />
+            <element signature="e#28997#29018#0" />
+            <element signature="e#29165#29189#0" />
+            <element signature="e#29191#29267#0" />
+            <element signature="e#29667#29746#0" />
+            <element signature="e#29682#29726#0" />
+            <element signature="e#29709#29723#0" />
+            <element signature="e#29748#29824#0" />
+            <element signature="e#29933#30000#0" />
+            <element signature="e#30208#30287#0" />
+            <element signature="e#30549#30613#0" />
+            <element signature="e#30657#30735#0" />
+            <element signature="e#30859#31188#0" />
+            <element signature="e#30900#31067#0" />
+            <element signature="e#30904#30956#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/!shopify/sarama@v1.19.0/async_producer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/redis.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+        <state relative-caret-position="165">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="e#18#71#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/gorilla/websocket@v1.4.0/json.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/root.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/internal/im/payload.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/garyburd/redigo@v1.6.0/redis/reply.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="291" column="5" selection-start-line="291" selection-start-column="5" selection-end-line="291" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/internal/im/status.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+        <state relative-caret-position="120">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.socket.yaml">
+    <entry file="file://$PROJECT_DIR$/internal/logs/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="405">
+          <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/start.go">
+    <entry file="file://$PROJECT_DIR$/cmd/restart.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="105" column="43" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
+        <state relative-caret-position="435">
+          <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
-            <element signature="e#618#775#0" expanded="true" />
+            <element signature="e#13#160#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/internal/im/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+        <state relative-caret-position="422">
+          <caret line="151" column="21" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
           <folding>
-            <element signature="e#12#176#0" expanded="true" />
+            <element signature="e#12#215#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/io/ioutil/ioutil.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="53" column="19" lean-forward="true" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/syscall/syscall_darwin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="229" column="5" selection-start-line="229" selection-start-column="5" selection-end-line="229" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/os/file_unix.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="300" column="5" selection-start-line="300" selection-start-column="5" selection-end-line="300" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.socket.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="3" selection-start-line="16" selection-end-line="16" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/encoding/binary/binary.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="123" selection-start-line="123" selection-end-line="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/stop.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding>
+            <element signature="e#618#662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/os/proc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="803">
+          <caret line="62" column="28" lean-forward="true" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/fmt/print.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="282" column="24" lean-forward="true" selection-start-line="282" selection-start-column="24" selection-end-line="282" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/os/exec/exec.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#160#235#0" />
+            <element signature="e#1187#1258#0" />
+            <element signature="e#1285#1408#0" />
+            <element signature="e#1441#1508#0" />
+            <element signature="e#1510#1570#0" />
+            <element signature="e#1669#4950#0" />
+            <element signature="e#1679#1721#0" />
+            <element signature="e#1868#1939#0" />
+            <element signature="e#2084#2132#0" />
+            <element signature="e#2388#2442#0" />
+            <element signature="e#2558#2606#0" />
+            <element signature="e#3157#3226#0" />
+            <element signature="e#3908#3976#0" />
+            <element signature="e#4192#4260#0" />
+            <element signature="e#4441#4502#0" />
+            <element signature="e#4952#5019#0" />
+            <element signature="e#5575#5800#0" />
+            <element signature="e#5589#5647#0" />
+            <element signature="e#5680#5786#0" />
+            <element signature="e#5725#5755#0" />
+            <element signature="e#5761#5783#0" />
+            <element signature="e#5802#5859#0" />
+            <element signature="e#6093#6196#0" />
+            <element signature="e#6110#6137#0" />
+            <element signature="e#6198#6268#0" />
+            <element signature="e#6368#6419#0" />
+            <element signature="e#6384#6400#0" />
+            <element signature="e#6451#6512#0" />
+            <element signature="e#6470#6489#0" />
+            <element signature="e#6544#6613#0" />
+            <element signature="e#6566#6586#0" />
+            <element signature="e#6615#6682#0" />
+            <element signature="e#6908#7522#0" />
+            <element signature="e#6929#7056#0" />
+            <element signature="e#6978#6993#0" />
+            <element signature="e#7094#7114#0" />
+            <element signature="e#7157#7170#0" />
+            <element signature="e#7320#7503#0" />
+            <element signature="e#7413#7431#0" />
+            <element signature="e#7468#7487#0" />
+            <element signature="e#7571#7611#0" />
+            <element signature="e#7660#7793#0" />
+            <element signature="e#7720#7754#0" />
+            <element signature="e#7863#8405#0" />
+            <element signature="e#7878#8025#0" />
+            <element signature="e#7947#7962#0" />
+            <element signature="e#8057#8077#0" />
+            <element signature="e#8120#8133#0" />
+            <element signature="e#8283#8386#0" />
+            <element signature="e#8459#8508#0" />
+            <element signature="e#8489#8506#0" />
+            <element signature="e#8510#8575#0" />
+            <element signature="e#9159#9230#0" />
+            <element signature="e#9194#9211#0" />
+            <element signature="e#9232#9295#0" />
+            <element signature="e#9483#9978#0" />
+            <element signature="e#9517#9555#0" />
+            <element signature="e#9570#9598#0" />
+            <element signature="e#9635#9663#0" />
+            <element signature="e#9713#9741#0" />
+            <element signature="e#9888#9909#0" />
+            <element signature="e#9980#10055#0" />
+            <element signature="e#10192#11779#0" />
+            <element signature="e#10219#10325#0" />
+            <element signature="e#10356#10534#0" />
+            <element signature="e#10417#10517#0" />
+            <element signature="e#10556#10605#0" />
+            <element signature="e#10623#10779#0" />
+            <element signature="e#10627#10776#0" />
+            <element signature="e#10638#10761#0" />
+            <element signature="e#10846#10890#0" />
+            <element signature="e#10891#11078#0" />
+            <element signature="e#10933#11033#0" />
+            <element signature="e#11213#11309#0" />
+            <element signature="e#11326#11422#0" />
+            <element signature="e#11542#11602#0" />
+            <element signature="e#11571#11595#0" />
+            <element signature="e#11621#11764#0" />
+            <element signature="e#11670#11759#0" />
+            <element signature="e#11675#11755#0" />
+            <element signature="e#11687#11728#0" />
+            <element signature="e#11855#12356#0" />
+            <element signature="e#11884#11946#0" />
+            <element signature="e#12393#12428#0" />
+            <element signature="e#12430#12496#0" />
+            <element signature="e#13151#13709#0" />
+            <element signature="e#13174#13219#0" />
+            <element signature="e#13235#13292#0" />
+            <element signature="e#13367#13391#0" />
+            <element signature="e#13461#13544#0" />
+            <element signature="e#13517#13541#0" />
+            <element signature="e#13600#13617#0" />
+            <element signature="e#13643#13688#0" />
+            <element signature="e#13711#13770#0" />
+            <element signature="e#13927#14324#0" />
+            <element signature="e#13949#14006#0" />
+            <element signature="e#14099#14148#0" />
+            <element signature="e#14195#14294#0" />
+            <element signature="e#14233#14291#0" />
+            <element signature="e#14326#14394#0" />
+            <element signature="e#14472#14720#0" />
+            <element signature="e#14494#14551#0" />
+            <element signature="e#14572#14629#0" />
+            <element signature="e#14722#14789#0" />
+            <element signature="e#15148#15541#0" />
+            <element signature="e#15169#15225#0" />
+            <element signature="e#15247#15317#0" />
+            <element signature="e#15359#15381#0" />
+            <element signature="e#15558#15607#0" />
+            <element signature="e#15643#15680#0" />
+            <element signature="e#15710#15737#0" />
+            <element signature="e#15739#15807#0" />
+            <element signature="e#16245#16614#0" />
+            <element signature="e#16267#16324#0" />
+            <element signature="e#16346#16417#0" />
+            <element signature="e#16459#16481#0" />
+            <element signature="e#16616#16684#0" />
+            <element signature="e#17131#17500#0" />
+            <element signature="e#17153#17210#0" />
+            <element signature="e#17232#17303#0" />
+            <element signature="e#17345#17367#0" />
+            <element signature="e#17502#17570#0" />
+            <element signature="e#17701#18239#0" />
+            <element signature="e#17898#17970#0" />
+            <element signature="e#18304#18798#0" />
+            <element signature="e#18439#18491#0" />
+            <element signature="e#18605#18778#0" />
+            <element signature="e#18751#18775#0" />
+            <element signature="e#18800#18872#0" />
+            <element signature="e#19011#19151#0" />
+            <element signature="e#19055#19139#0" />
+            <element signature="e#19196#19604#0" />
+            <element signature="e#19218#19240#0" />
+            <element signature="e#19260#19303#0" />
+            <element signature="e#19632#19671#0" />
+            <element signature="e#19644#19659#0" />
+            <element signature="e#19673#19747#0" />
+            <element signature="e#19883#19939#0" />
+            <element signature="e#19941#20000#0" />
+            <element signature="e#20124#20526#0" />
+            <element signature="e#20236#20512#0" />
+            <element signature="e#20281#20323#0" />
+            <element signature="e#20360#20391#0" />
+            <element signature="e#20428#20465#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socket.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" lean-forward="true" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/start.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="33" column="26" lean-forward="true" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
         </state>
       </provider>
     </entry>

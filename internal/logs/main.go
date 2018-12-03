@@ -3,7 +3,6 @@ package logs
 import (
 	"encoding/json"
 	"github.com/Shopify/sarama"
-	"github.com/spf13/viper"
 	"log"
 )
 
@@ -18,10 +17,6 @@ type Payload struct {
 	encoded []byte
 	err     error
 }
-
-var producer sarama.AsyncProducer
-
-var broker, topic string
 
 func (ale *Payload) ensureEncoded() {
 	if ale.encoded == nil && ale.err == nil {
@@ -39,29 +34,13 @@ func (ale *Payload) Encode() ([]byte, error) {
 	return ale.encoded, ale.err
 }
 
-func Handler(content *Payload)  {
-	if broker == "" && topic == "" {
-		kafka := viper.GetStringMapString("kafka")
-		broker = kafka["broker"]
-		topic = kafka["topic"]
-	}
-
-	if producer == nil {
-		producer = createAsyncProducer(broker)
-	}
-	producer.Input() <- &sarama.ProducerMessage{
-		Topic: topic,
-		Key: sarama.StringEncoder(content.Uid),
-		Value: content,
-	}
-}
-
-func createAsyncProducer(broker string) sarama.AsyncProducer {
+func CreateAsyncProducer(broker string) sarama.AsyncProducer {
 	config := sarama.NewConfig()
 
 	config.Producer.RequiredAcks = sarama.WaitForLocal
 	config.Producer.Compression = sarama.CompressionSnappy
 	config.Producer.Flush.Frequency = 3e9
+	config.Producer.Timeout = 3e9
 
 	producer, err := sarama.NewAsyncProducer([]string{broker}, config)
 

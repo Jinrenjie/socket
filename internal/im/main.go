@@ -2,8 +2,10 @@ package im
 
 import (
 	"errors"
+	"github.com/Shopify/sarama"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
+	"github.com/spf13/viper"
 	"log"
 	"net/http"
 	"reflect"
@@ -12,17 +14,25 @@ import (
 	"time"
 )
 
-// Define a map to hold the WebSocket connection
-var connections sync.Map
-
-// Config allow cors
-var upgrader = websocket.Upgrader{
-	ReadBufferSize:  4096,
-	WriteBufferSize: 4096,
-	CheckOrigin: func(r *http.Request) bool {
-		return true
-	},
+type DeliverResult struct {
+	Fd string `json:"fd"`
+	Status string `json:"status"`
 }
+
+var (
+	// Define a broker and topic for kafka
+	broker, topic string
+	producer sarama.AsyncProducer
+	upgrader = websocket.Upgrader{
+		ReadBufferSize:  4096,
+		WriteBufferSize: 4096,
+		CheckOrigin: func(r *http.Request) bool {
+			return true
+		},
+	}
+	// Define a map to hold the WebSocket connection
+	connections sync.Map
+)
 
 // Web Socket upgrade
 func upgrade(response http.ResponseWriter, request *http.Request) (string, string, *websocket.Conn, error) {
@@ -78,18 +88,18 @@ func Handle(response http.ResponseWriter, request *http.Request) {
 		}
 	}()
 
-	logs.Handler(&logs.Payload{
-		Uid:        id,
-		Fd:         fd,
-		Type:       "connection",
-		Body:       "Connected",
-		CreateTime: time.Now().String(),
-		CreateDate: time.Now().Format("2006-01-02"),
-		Microtime:  time.Now().UnixNano() / 1000,
-	})
+	//logGenerate(&logs.Payload{
+	//	Uid:        id,
+	//	Fd:         fd,
+	//	Type:       "connection",
+	//	Body:       "Connected",
+	//	CreateTime: time.Now().String(),
+	//	CreateDate: time.Now().Format("2006-01-02"),
+	//	Microtime:  time.Now().UnixNano() / 1000,
+	//})
 
 	// Register our new client
-	connections.Store(id, connection)
+	connections.Store(fd, connection)
 
 	// Set read dead line
 	if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
@@ -106,61 +116,70 @@ func Handle(response http.ResponseWriter, request *http.Request) {
 		var msg Payload
 		// Read in a new message as JSON and map it to a Message object
 		if err := connection.ReadJSON(&msg); err != nil {
-			if err := connection.Close(); err != nil {
-				log.Printf("close connection error %v", err)
-			}
-			go logs.Handler(&logs.Payload{
-				Uid:        id,
-				Fd:         fd,
-				Type:       "connection",
-				Body:       "Disconnected",
-				CreateTime: time.Now().String(),
-				CreateDate: time.Now().Format("2006-01-02"),
-				Microtime:  time.Now().UnixNano() / 1000,
-			})
-			connections.Delete(id)
+			//logGenerate(&logs.Payload{
+			//	Uid:        id,
+			//	Fd:         fd,
+			//	Type:       "connection",
+			//	Body:       "Disconnected",
+			//	CreateTime: time.Now().String(),
+			//	CreateDate: time.Now().Format("2006-01-02"),
+			//	Microtime:  time.Now().UnixNano() / 1000,
+			//})
+			connections.Delete(fd)
 			Offline(id, fd)
-			goto CLOSE
+			break
 		}
 
-		if err := connection.SetReadDeadline(time.Now().Add(time.Second * 120)); err != nil {
+		if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
 			log.Printf("set read dead line error %v", err)
 		}
 
-	}
-CLOSE:
-	connection.Close()
-}
-
-func SendMessage(id string, message Payload) {
-	oringin, ok := connections.Load(id)
-
-	if ok {
-		contype := reflect.ValueOf(oringin)
-		connection := contype.Interface().(*websocket.Conn)
-		if err := connection.WriteJSON(message); err != nil {
-			log.Printf("send message error %v", err)
-		}
-
-		if message.GetAction() != "reply" {
-			pushToUnconfirmedQueue(message)
-		}
-
-	} else {
-		// User offline logic
+		DeliverMessage(msg.Body.To, msg)
 	}
 }
 
-// Push message to unconfirmed queue
-func pushToUnconfirmedQueue(payload Payload) {
-	//boom := time.After(3e9)
-	//for {
-	//	select {
-	//	case <-boom:
-	//		if err := queue.Push(payload); err != nil {
-	//			log.Println(err)
-	//		}
-	//		return
-	//	}
-	//}
+// Log push to kafka producer
+func logGenerate(content *logs.Payload) {
+	if broker == "" && topic == "" {
+		kafka := viper.GetStringMapString("kafka")
+		broker = kafka["broker"]
+		topic = kafka["topic"]
+	}
+	if producer == nil {
+		producer = logs.CreateAsyncProducer(broker)
+	}
+	producer.Input() <- &sarama.ProducerMessage{
+		Topic: topic,
+		Key: sarama.StringEncoder(content.Uid),
+		Value: content,
+	}
+}
+
+// Deliver message to client
+func DeliverMessage(id string, message Payload) []DeliverResult {
+	clients := GetClients(id)
+
+	result := make([]DeliverResult, 0)
+
+	for _, fd := range clients {
+		oringin, ok := connections.Load(fd)
+		var client = DeliverResult{
+			Fd: fd,
+		}
+		if ok {
+			contype := reflect.ValueOf(oringin)
+			connection := contype.Interface().(*websocket.Conn)
+			if err := connection.WriteJSON(message); err != nil {
+				client.Status = "failure"
+				log.Printf("send message error %v", err)
+			} else {
+				client.Status = "success"
+			}
+			result = append(result, client)
+		} else {
+			client.Status = "failure"
+			result = append(result, client)
+		}
+	}
+	return result
 }

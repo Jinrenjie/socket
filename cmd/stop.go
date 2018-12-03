@@ -16,23 +16,49 @@ package cmd
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+	"io/ioutil"
+	"log"
+	"os"
+	"strconv"
+	"syscall"
 )
 
 // stopCmd represents the stop command
 var stopCmd = &cobra.Command{
 	Use:   "stop",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Stop Web Socket service",
+	Long: `Stop Web Socket service.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("stop called")
+		path := viper.GetString("pid")
+		origin, err := ioutil.ReadFile("/Users/zuber-imac/Develop/Go/src/socket/" + path)
+		if err != nil {
+			log.Fatal("ERR read pid file", err)
+		}
+		pid, err := strconv.Atoi(string(origin))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if err := syscall.Kill(int(pid), syscall.SIGKILL); err != nil {
+			log.Fatal("ERR stop service error", err)
+		}
+		if err := os.Remove("/Users/zuber-imac/Develop/Go/src/socket/" + path); err != nil {
+			log.Fatal("ERR remove pid file", err)
+		}
+		fmt.Println("The service has stopped.")
 	},
+}
+
+func byte2Int(data []byte) int {
+	var ret = 0
+	var count = len(data)
+	var i uint = 0
+	for i = 0; i < uint(count); i++ {
+		ret = ret | (int(data[i]) << (i * 8))
+	}
+	return ret
 }
 
 func init() {

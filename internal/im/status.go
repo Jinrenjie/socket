@@ -65,3 +65,14 @@ func CheckById(id string) bool {
 	}
 	return r
 }
+
+func GetClients(id string) []string {
+	connection := database.Pool.Get()
+	key := fmt.Sprintf("users:%v", id)
+	clients, err := redis.Strings(connection.Do("HKEYS", key))
+	if err != nil {
+		log.Println(err)
+	}
+
+	return clients
+}
