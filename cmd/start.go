@@ -9,12 +9,17 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"socket/api"
 	"socket/database"
 	"socket/internal/im"
 )
 
-var daemon bool
+var (
+	ssl bool
+	daemon bool
+	confFile string
+)
 
 // startCmd represents the start command
 var startCmd = &cobra.Command{
@@ -34,7 +39,9 @@ var startCmd = &cobra.Command{
 				os.Exit(0)
 			}
 			fmt.Println("Service started successfully.")
-			if err := ioutil.WriteFile("socket.lock", []byte(fmt.Sprintf("%d", command.Process.Pid)), 0666); err != nil {
+			runtime := viper.GetStringMapString("runtime")
+			pidPath := runtime["pid"]
+			if err := ioutil.WriteFile(pidPath, []byte(fmt.Sprintf("%d", command.Process.Pid)), 0666); err != nil {
 				panic(err)
 			}
 			daemon = false
@@ -45,6 +52,7 @@ var startCmd = &cobra.Command{
 }
 
 func init() {
+	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(startCmd)
 
 	// Here you will define your flags and configuration settings.
@@ -55,22 +63,59 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
+	startCmd.Flags().StringVarP(&confFile, "config", "c", ".socket.yaml", "defien runtime config file path")
 	startCmd.Flags().BoolP("web-ui", "u", false, "Enable managerment web ui")
 	startCmd.Flags().BoolVarP(&daemon, "daemon", "d", false, "Start the service as a daemon")
+	startCmd.Flags().BoolVarP(&ssl, "ssl", "s", false, "Start service on ssl connection")
 }
 
+// initConfig reads in config file and ENV variables if set.
+func initConfig() {
+	if confFile != "" {
+		// Use config file from the flag.
+		viper.SetConfigFile(confFile)
+	} else {
+		// Find home directory.
+		path, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
+		// Search config in home directory with name ".socket" (without extension).
+		viper.AddConfigPath(path)
+		viper.SetConfigName(".socket")
+	}
+
+	viper.AutomaticEnv() // read in environment variables that match
+
+	// If a config file is found, read it in.
+	if err := viper.ReadInConfig(); err != nil {
+		fmt.Println("ERR:", err)
+		os.Exit(2)
+	}
+}
+
+// Start Service
 func startService() {
 	bootstrap()
 	api.Register()
 	web := viper.GetStringMapString("web")
 	socket := viper.GetStringMapString("socket")
 	http.HandleFunc(socket["prefix"], im.Handle)
-	http.Handle("/", http.FileServer(http.Dir("web")))
+	//http.Handle("/", http.FileServer(http.Dir("web")))
 	socketAddr := fmt.Sprintf("%v:%v", web["host"], web["port"])
 
 	fmt.Printf("Web service listen on %v \n", socketAddr)
-	if err := http.ListenAndServe(socketAddr, nil); err != nil {
-		fmt.Println(err)
+	if ssl {
+		sslConf := viper.GetStringMapString("ssl")
+		if err := http.ListenAndServeTLS(socketAddr, sslConf["cert"], sslConf["key"], nil); err != nil {
+			fmt.Println(err)
+		}
+	} else {
+		if err := http.ListenAndServe(socketAddr, nil); err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 

@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/garyburd/redigo/redis"
 	"github.com/spf13/viper"
 	"io/ioutil"
@@ -43,65 +44,112 @@ func Register()  {
 	})
 	// Deliver message
 	http.HandleFunc(prefix + "/deliver", func(writer http.ResponseWriter, request *http.Request) {
-		data := make([]string, 0)
-		response := Response{
+		res := Response{
 			Status: 200,
 			Message: "success",
-			Data: data,
 		}
 
-		msg := im.Payload{}
+		if request.Method != "POST" {
+			res.Status = 405
+			res.Message = "Method Not Allowed"
+			res.Data = false
+			writer.WriteHeader(405)
+		}
+
+		if request.Header.Get("Content-Type") != "application/json" {
+			res.Status = 400
+			res.Message = "Content-type must be application/json"
+			res.Data = false
+			writer.WriteHeader(400)
+		}
 
 		bytes, err := ioutil.ReadAll(request.Body)
 		if err != nil {
-			log.Fatal("ERR: read request", err)
+			fmt.Println("ERR: read request ", err)
 		}
 
-		if err := json.Unmarshal(bytes, &msg); err != nil {
-			log.Fatal("ERR: unmarshal request", err)
+		if len(bytes) == 0 {
+			res.Status = 422
+			res.Message = "request body is null"
+			res.Data = false
+			writer.WriteHeader(422)
 		}
 
-		online := im.CheckById(msg.Body.To)
+		if res.Status == 200 {
+			msg := im.Payload{}
 
-		if online {
-			response.Data = im.DeliverMessage(msg.Body.To, msg)
-		} else {
-			response.Status = 404
-			response.Message = "The user is not online"
+			if err := json.Unmarshal(bytes, &msg); err != nil {
+				log.Fatal("ERR: unmarshal request", err)
+			}
+			online := im.CheckById(msg.Body.To)
+
+			if online {
+				res.Data = im.DeliverMessage(msg.Body.To, msg)
+			} else {
+				res.Status = 404
+				res.Message = "The user is not online"
+			}
 		}
-		res, err := json.Marshal(&response)
 
+		result, err := json.Marshal(&res)
 		if err != nil {
 			log.Fatal("ERR: marshal request", err)
 		}
 
-		if _, err := writer.Write(res); err != nil {
+		if _, err := writer.Write(result); err != nil {
 			log.Fatal("ERR: marshal request", err)
 		}
 	})
 	// Check online
 	http.HandleFunc(prefix + "/check", func(writer http.ResponseWriter, request *http.Request) {
-		var form = struct {
-			Id string
-		}{}
+		res := Response{
+			Status: 200,
+			Message: "success",
+		}
+
+		if request.Method != "POST" {
+			res.Status = 405
+			res.Message = "Method Not Allowed"
+			res.Data = false
+			writer.WriteHeader(405)
+		}
+
+		if request.Header.Get("Content-Type") != "application/json" {
+			res.Status = 400
+			res.Message = "Content-type must be application/json"
+			res.Data = false
+			writer.WriteHeader(400)
+		}
 
 		bytes, err := ioutil.ReadAll(request.Body)
 		if err != nil {
-			log.Fatal("ERR: read request", err)
+			fmt.Println("ERR: read request ", err)
 		}
-		err = json.Unmarshal(bytes, &form)
+
+		if len(bytes) == 0 {
+			res.Status = 422
+			res.Message = "request body is null"
+			res.Data = false
+			writer.WriteHeader(422)
+		}
+
+		if res.Status == 200 {
+			var form = struct {
+				Id string
+			}{}
+
+			err = json.Unmarshal(bytes, &form)
+			if err != nil {
+				fmt.Println("ERR: unmarshal request ", err)
+			}
+
+			res.Data = im.CheckById(form.Id)
+		}
+
+		result, err := json.Marshal(res)
 		if err != nil {
-			log.Fatal("ERR: unmarshal request", err)
+			fmt.Println(err)
 		}
-
-		oinline := im.CheckById(form.Id)
-
-		result, err := json.Marshal(Response{
-			Status: 200,
-			Message: "success",
-			Data: oinline,
-		})
-
 		if _, err := writer.Write(result); err != nil {
 			log.Fatal("ERR: marshal request", err)
 		}
@@ -124,7 +172,7 @@ func Register()  {
 		connection := database.Pool.Get()
 		userskey, err := redis.Strings(connection.Do("KEYS", "users:*"))
 		if err != nil {
-
+			fmt.Println(err)
 		}
 
 		users := make([]User, len(userskey))

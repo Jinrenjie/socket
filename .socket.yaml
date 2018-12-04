@@ -3,15 +3,31 @@ web:
   port: 8000
   name: George
   pass: George@1994
+
+# 运行时Api前缀
 api:
   prefix: /api
+
+# Redis 缓存配置
 redis:
   host: 127.0.0.1
   port: 6379
   pass:
+
+# Kafka 配置
 kafka:
   broker: 10.66.157.147:9092
   topic: websocketlogs
+
+# Socket 路由
 socket:
-  prefix: /ims
-pid: socket.lock
+  prefix: /
+
+# 运行时进程ID
+runtime:
+  pid: socket.lock
+
+# SSL加密证书
+ssl:
+  cert: ssl/fullchain.cer
+  key: ssl/betterde.com.key

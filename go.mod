@@ -14,5 +14,6 @@ require (
 	github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a // indirect
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/viper v1.2.1
+	golang.org/x/net v0.0.0-20181201002055-351d144fa1fc // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 )

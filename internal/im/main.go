@@ -1,6 +1,8 @@
 package im
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"errors"
 	"github.com/Shopify/sarama"
 	"github.com/google/uuid"
@@ -8,8 +10,10 @@ import (
 	"github.com/spf13/viper"
 	"log"
 	"net/http"
+	"net/url"
 	"reflect"
 	"socket/internal/logs"
+	"strings"
 	"sync"
 	"time"
 )
@@ -57,6 +61,25 @@ func upgrade(response http.ResponseWriter, request *http.Request) (string, strin
 // Bind user id to connection
 func bind(request *http.Request) (id, version, platform string, err error) {
 	params := request.URL.Query()
+	if request.URL.String() == "" {
+		return "", "", "", errors.New("query string parse fails")
+	}
+	index := strings.LastIndex(request.URL.String(), "token=")
+	if index > 0 {
+		tokenStr := request.URL.String()[index + 6:]
+		if tokenStr != "" {
+			tokenValue, err := url.ParseQuery(tokenStr)
+			if err != nil {
+				return "", "", "", errors.New("query string parse fails")
+			}
+			hash := md5.New()
+			hash.Write([]byte(tokenValue.Get("oauth2") + tokenValue.Get("timestamp")))
+			cipherHexStr := hash.Sum(nil)
+			if tokenValue.Get("signature") != hex.EncodeToString(cipherHexStr) {
+				return "", "", "", errors.New("token validation fails")
+			}
+		}
+	}
 	id = params.Get("id")
 	version = params.Get("version")
 	if version == "" {

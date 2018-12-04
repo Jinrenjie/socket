@@ -31,7 +31,8 @@ var stopCmd = &cobra.Command{
 	Short: "Stop Web Socket service",
 	Long: `Stop Web Socket service.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		path := viper.GetString("pid")
+		runtime := viper.GetStringMapString("runtime")
+		path := runtime["pid"]
 		origin, err := ioutil.ReadFile("/Users/zuber-imac/Develop/Go/src/socket/" + path)
 		if err != nil {
 			log.Fatal("ERR read pid file", err)
