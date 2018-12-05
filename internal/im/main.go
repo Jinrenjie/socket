@@ -135,7 +135,7 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 		// Read in a new message as JSON and map it to a Message object
 		_, _, err := connection.ReadMessage()
 		if err != nil {
-			logs.Save(&logs.Payload{
+			go logs.Save(&logs.Payload{
 				Uid:        id,
 				Fd:         fd,
 				Type:       "connection",
@@ -172,7 +172,25 @@ func DeliverMessage(id string, message []byte) []DeliverResult {
 			if err := connection.WriteMessage(websocket.TextMessage, message); err != nil {
 				client.Status = "failure"
 				log.Printf("send message error %v", err)
+				go logs.Save(&logs.Payload{
+					Uid:        id,
+					Fd:         fd,
+					Type:       "deliver",
+					Body:       "failure",
+					CreateTime: time.Now().String(),
+					CreateDate: time.Now().Format("2006-01-02"),
+					Microtime:  time.Now().UnixNano() / 1000,
+				})
 			} else {
+				go logs.Save(&logs.Payload{
+					Uid:        id,
+					Fd:         fd,
+					Type:       "deliver",
+					Body:       "success",
+					CreateTime: time.Now().String(),
+					CreateDate: time.Now().Format("2006-01-02"),
+					Microtime:  time.Now().UnixNano() / 1000,
+				})
 				client.Status = "success"
 			}
 			result = append(result, client)

@@ -12,7 +12,7 @@ type Payload struct {
 	Uid string `json:"uid"`
 	Fd string `json:"fd"`
 	Type string `json:"type"`
-	Body string `json:"body"`
+	Body interface{} `json:"body"`
 	CreateTime string `json:"create_time"`
 	CreateDate string `json:"create_date"`
 	Microtime int64 `json:"microtime"`

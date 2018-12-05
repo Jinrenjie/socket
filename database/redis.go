@@ -9,7 +9,7 @@ var (
 	Pool *redis.Pool
 )
 
-func CreateRedisPool(addr, password string) {
+func CreateRedisPool(addr, password string, db int) {
 	Pool = &redis.Pool{
 		MaxIdle:     100,
 		MaxActive:   500,
@@ -17,6 +17,7 @@ func CreateRedisPool(addr, password string) {
 		Wait: true,
 		Dial: func() (redis.Conn, error) {
 			c, err := redis.Dial("tcp", addr,
+				redis.DialDatabase(db),
 				redis.DialPassword(password),
 				redis.DialReadTimeout(10e9),
 				redis.DialWriteTimeout(10e9),

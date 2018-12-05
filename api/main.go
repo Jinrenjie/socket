@@ -19,6 +19,7 @@ type Response struct {
 	Data interface{} `json:"data"`
 }
 
+// Deliver message to user
 func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
 	res := Response{
 		Status: 200,
@@ -37,8 +38,8 @@ func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Par
 		writer.WriteHeader(422)
 	}
 
+	id := params.Get("id")
 	if res.Status == 200 {
-		id := params.Get("id")
 		online := im.CheckById(id)
 
 		if online {
@@ -60,6 +61,7 @@ func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Par
 	}
 }
 
+// Check user online status
 func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
 	res := Response{
 		Status: 200,
@@ -78,6 +80,7 @@ func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco
 	}
 }
 
+// Get all connections
 func Connections(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
 	type User struct {
 		Id string `json:"id"`
@@ -90,9 +93,19 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 		Platform string `json:"platform"`
 		Version string `json:"version"`
 	}
-
+	var (
+		userskey []string
+		err error
+	)
 	connection := database.Pool.Get()
-	userskey, err := redis.Strings(connection.Do("KEYS", "users:*"))
+	origin := request.URL.Query()
+	id := origin.Get("id")
+	if id != "" {
+		userskey, err = redis.Strings(connection.Do("KEYS", fmt.Sprintf("users:%v", id)))
+	} else {
+		userskey, err = redis.Strings(connection.Do("KEYS", "users:*"))
+	}
+
 	if err != nil {
 		fmt.Println(err)
 	}

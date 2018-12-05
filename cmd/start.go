@@ -14,6 +14,7 @@ import (
 	"socket/api"
 	"socket/database"
 	"socket/internal/im"
+	"strconv"
 )
 
 var (
@@ -133,7 +134,11 @@ func startService() {
 func bootstrap() {
 	redisConf := viper.GetStringMapString("redis")
 	redisAddr := fmt.Sprintf("%v:%v", redisConf["host"], redisConf["port"])
-	database.CreateRedisPool(redisAddr, redisConf["pass"])
+	db, err := strconv.Atoi(redisConf["db"])
+	if err != nil {
+		db = 1
+	}
+	database.CreateRedisPool(redisAddr, redisConf["pass"], db)
 	clear()
 }
 
