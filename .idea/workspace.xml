@@ -353,6 +353,7 @@
       <find>exit status 1</find>
       <find>default</find>
       <find>(default &quot;.socket.yaml&quot;</find>
+      <find>text</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
