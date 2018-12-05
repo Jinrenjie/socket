@@ -83,7 +83,7 @@ func bind(request *http.Request) (id, version, platform string, err error) {
 	}
 	platform = params.Get("platform")
 	if platform == "" {
-		platform = "iOS"
+		platform = "web"
 	}
 	if id == "" || version == "" || platform == "" {
 		return id, version, platform, errors.New("authentication failure")
@@ -121,15 +121,15 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 	connections.Store(fd, connection)
 
 	// Set read dead line
-	if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
-		// TODO handle err
-	}
-	connection.SetPingHandler(func(appData string) error {
-		if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
-			// TODO handle err
-		}
-		return nil
-	})
+	//if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
+	//	// TODO handle err
+	//}
+	//connection.SetPingHandler(func(appData string) error {
+	//	if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
+	//		// TODO handle err
+	//	}
+	//	return nil
+	//})
 
 	for {
 		// Read in a new message as JSON and map it to a Message object
@@ -149,9 +149,9 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 			break
 		}
 
-		if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
-			log.Printf("set read dead line error %v", err)
-		}
+		//if err := connection.SetReadDeadline(time.Now().Add(120e9)); err != nil {
+		//	log.Printf("set read dead line error %v", err)
+		//}
 	}
 }
 

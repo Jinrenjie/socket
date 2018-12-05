@@ -35,9 +35,9 @@ var startCmd = &cobra.Command{
 				fmt.Println("Service is started.")
 				os.Exit(0)
 			}
-			command := exec.Command("socket", "start")
+			command := exec.Command(os.Args[0], "start")
 			if err := command.Start(); err != nil {
-				fmt.Println("Service startup failed.")
+				fmt.Println("Service startup failed.", err)
 				os.Exit(0)
 			}
 			fmt.Println("Service started successfully.")
