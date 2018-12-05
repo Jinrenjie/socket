@@ -16,7 +16,7 @@ redis:
 
 # Kafka 配置
 kafka:
-  broker: 10.66.157.147:9092
+  broker: 115.28.7.104:9092
   topic: websocketlogs
 
 # Socket 路由
@@ -31,3 +31,14 @@ runtime:
 ssl:
   cert: ssl/fullchain.cer
   key: ssl/betterde.com.key
+
+# log
+log:
+  mongodb:
+  host: 127.0.0.1
+  port: 27017
+  timeout: 600
+  username:
+  password:
+  database: webim
+  collection: websocketlogs

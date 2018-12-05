@@ -3,7 +3,9 @@ package logs
 import (
 	"encoding/json"
 	"github.com/Shopify/sarama"
+	"github.com/spf13/viper"
 	"log"
+	"socket/database"
 )
 
 type Payload struct {
@@ -17,6 +19,12 @@ type Payload struct {
 	encoded []byte
 	err     error
 }
+
+var (
+	// Define a broker and topic for kafka
+	broker, topic string
+	producer sarama.AsyncProducer
+)
 
 func (ale *Payload) ensureEncoded() {
 	if ale.encoded == nil && ale.err == nil {
@@ -34,7 +42,7 @@ func (ale *Payload) Encode() ([]byte, error) {
 	return ale.encoded, ale.err
 }
 
-func CreateAsyncProducer(broker string) sarama.AsyncProducer {
+func createAsyncProducer(broker string) sarama.AsyncProducer {
 	config := sarama.NewConfig()
 
 	config.Producer.RequiredAcks = sarama.WaitForLocal
@@ -56,4 +64,40 @@ func CreateAsyncProducer(broker string) sarama.AsyncProducer {
 		}
 	}()
 	return producer
+}
+
+func Save(payload * Payload)  {
+	logKafka(payload)
+	logMongoDB(payload)
+}
+
+func logMongoDB(payload *Payload)  {
+	logger := viper.GetStringMapString("log")
+	session := database.Connection()
+	collection := session.DB(logger["database"]).C(logger["collection"])
+
+	defer func() {
+		session.Close()
+	}()
+
+	if err := collection.Insert(payload); err != nil {
+		panic(err)
+	}
+}
+
+// Log push to kafka producer
+func logKafka(content *Payload) {
+	if broker == "" && topic == "" {
+		kafka := viper.GetStringMapString("kafka")
+		broker = kafka["broker"]
+		topic = kafka["topic"]
+	}
+	if producer == nil {
+		producer = createAsyncProducer(broker)
+	}
+	producer.Input() <- &sarama.ProducerMessage{
+		Topic: topic,
+		Key: sarama.StringEncoder(content.Uid),
+		Value: content,
+	}
 }

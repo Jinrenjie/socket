@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/garyburd/redigo/redis"
+	"github.com/naoina/denco"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"io/ioutil"
@@ -99,21 +100,31 @@ func initConfig() {
 // Start Service
 func startService() {
 	bootstrap()
-	api.Register()
+	apiConf := viper.GetStringMapString("api")
+	apiPrefix := apiConf["prefix"]
 	web := viper.GetStringMapString("web")
 	socket := viper.GetStringMapString("socket")
-	http.HandleFunc(socket["prefix"], im.Handle)
+	mux := denco.NewMux()
+	handler, err := mux.Build([]denco.Handler{
+		mux.GET(socket["prefix"], im.Handle),
+		mux.GET(apiPrefix + "/check/:id", api.CheckOnline),
+		mux.GET(apiPrefix + "/connections", api.Connections),
+		mux.POST(apiPrefix + "/deliver/:id", api.Deliver),
+	})
+	if err != nil {
+		panic(err)
+	}
 	//http.Handle("/", http.FileServer(http.Dir("web")))
 	socketAddr := fmt.Sprintf("%v:%v", web["host"], web["port"])
 
 	fmt.Printf("Web service listen on %v \n", socketAddr)
 	if ssl {
 		sslConf := viper.GetStringMapString("ssl")
-		if err := http.ListenAndServeTLS(socketAddr, sslConf["cert"], sslConf["key"], nil); err != nil {
+		if err := http.ListenAndServeTLS(socketAddr, sslConf["cert"], sslConf["key"], handler); err != nil {
 			fmt.Println(err)
 		}
 	} else {
-		if err := http.ListenAndServe(socketAddr, nil); err != nil {
+		if err := http.ListenAndServe(socketAddr, handler); err != nil {
 			fmt.Println(err)
 		}
 	}
