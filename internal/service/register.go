@@ -10,7 +10,7 @@ import (
 
 var scheme string
 
-func Registration(addr string, port int, ssl bool)  {
+func Registration(addr string, port int, ssl bool) {
 	consul := viper.GetStringMapString("consul")
 	check := viper.GetStringMapString("service.check")
 	conf := &api.Config{
@@ -32,12 +32,13 @@ func Registration(addr string, port int, ssl bool)  {
 	}
 
 	registration := &api.AgentServiceRegistration{
-		ID: viper.GetString("service.id"),
+		ID: fmt.Sprintf("%v:%v", addr, port),
 		Name: viper.GetString("service.name"),
 		Port: port,
-		Tags: []string{"service"},
+		Tags: viper.GetStringSlice("service.tags"),
 		Address: addr,
 		Check: &api.AgentServiceCheck{
+			Name: fmt.Sprintf("%v:%v", addr, port),
 			HTTP: fmt.Sprintf("%v%v:%v%v", scheme, addr, port, check["uri"]),
 			Timeout: check["timeout"],
 			Interval: check["interval"],
@@ -48,4 +49,6 @@ func Registration(addr string, port int, ssl bool)  {
 	if err := client.Agent().ServiceRegister(registration); err != nil {
 		log.Fatal("register server error :", err)
 	}
+
+	//log.Println(client.Agent())
 }

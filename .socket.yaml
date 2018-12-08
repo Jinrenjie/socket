@@ -1,6 +1,6 @@
 web:
   host: 127.0.0.1
-  port: 8080
+  port: 8083
   name: George
   pass: George@1994
 
@@ -54,9 +54,9 @@ service:
   id:
   name: im
   tags:
-    - im
+    - 1.0.1
   check:
     uri: /health
-    timeout: 3s
-    interval: 5s
-    deregister: 30s
+    timeout: 1s
+    interval: 2s
+    deregister: 5s
