@@ -67,7 +67,7 @@ func createAsyncProducer(broker string) sarama.AsyncProducer {
 }
 
 func Save(payload * Payload)  {
-	logKafka(payload)
+	//logKafka(payload)
 	logMongoDB(payload)
 }
 
