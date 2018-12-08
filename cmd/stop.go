@@ -33,7 +33,7 @@ var stopCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		runtime := viper.GetStringMapString("runtime")
 		path := runtime["pid"]
-		origin, err := ioutil.ReadFile("/Users/zuber-imac/Develop/Go/src/socket/" + path)
+		origin, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Fatal("ERR read pid file", err)
 		}
@@ -45,7 +45,7 @@ var stopCmd = &cobra.Command{
 		if err := syscall.Kill(int(pid), syscall.SIGKILL); err != nil {
 			log.Fatal("ERR stop service error", err)
 		}
-		if err := os.Remove("/Users/zuber-imac/Develop/Go/src/socket/" + path); err != nil {
+		if err := os.Remove(path); err != nil {
 			log.Fatal("ERR remove pid file", err)
 		}
 		fmt.Println("The service has stopped.")

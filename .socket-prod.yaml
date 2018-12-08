@@ -1,6 +1,6 @@
 web:
   host: 127.0.0.1
-  port: 8080
+  port: 8000
   name: George
   pass: George@1994
 
@@ -10,8 +10,8 @@ api:
 
 # Redis 缓存配置
 redis:
-  host: 127.0.0.1
-  port: 6379
+  host: 10.29.87.219
+  port: 6378
   pass:
   db: 1
 
@@ -36,27 +36,10 @@ ssl:
 # log
 log:
   mongodb:
-  host: 127.0.0.1
-  port: 27017
+  host: 10.30.108.138
+  port: 27018
   timeout: 600
   username:
   password:
   database: webim
   collection: websocketlogs
-
-consul:
-  host: 192.168.5.253
-  port: 8500
-  scheme: http
-  datacenter: george
-
-service:
-  id:
-  name: im
-  tags:
-    - im
-  check:
-    uri: /health
-    timeout: 3s
-    interval: 5s
-    deregister: 30s

@@ -14,16 +14,16 @@ import (
 )
 
 type Response struct {
-	Status int `json:"status"`
-	Message string `json:"message"`
-	Data interface{} `json:"data"`
+	Code int `json:"code"`
+	Msg string `json:"msg"`
+	Result interface{} `json:"result"`
 }
 
 // Deliver message to user
 func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
 	res := Response{
-		Status: 200,
-		Message: "success",
+		Code: 0,
+		Msg: "success",
 	}
 
 	bytes, err := ioutil.ReadAll(request.Body)
@@ -32,22 +32,22 @@ func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Par
 	}
 
 	if len(bytes) == 0 {
-		res.Status = 422
-		res.Message = "request body is null"
-		res.Data = make([]int, 0)
+		res.Code = 422
+		res.Msg = "request body is null"
+		res.Result = make([]int, 0)
 		writer.WriteHeader(422)
 	}
 
 	id := params.Get("id")
-	if res.Status == 200 {
+	if res.Code == 0 {
 		online := im.CheckById(id)
 
 		if online {
-			res.Data = im.DeliverMessage(id, bytes)
+			res.Result = im.DeliverMessage(id, bytes)
 		} else {
-			res.Status = 200
-			res.Message = "this user is offline"
-			res.Data = make([]int, 0)
+			res.Code = 0
+			res.Msg = "this user is offline"
+			res.Result = make([]int, 0)
 		}
 	}
 
@@ -64,12 +64,12 @@ func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Par
 // Check user online status
 func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
 	res := Response{
-		Status: 200,
-		Message: "success",
+		Code: 0,
+		Msg: "success",
 	}
 
 	id := params.Get("id")
-	res.Data = im.CheckById(id)
+	res.Result = im.CheckById(id)
 
 	result, err := json.Marshal(res)
 	if err != nil {
@@ -83,7 +83,7 @@ func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco
 // Get all connections
 func Connections(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
 	type User struct {
-		Id string `json:"id"`
+		Uid string `json:"uid"`
 		Clients interface{} `json:"clients"`
 	}
 
@@ -116,7 +116,7 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 	for _, key := range userskey {
 		temp := strings.Split(key, ":")
 		user := User{
-			Id: temp[1],
+			Uid: temp[1],
 		}
 
 		clients, err := redis.StringMap(connection.Do("HGETALL", key))
@@ -142,14 +142,21 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 	}
 
 	if result, err := json.Marshal(Response{
-		Status: 200,
-		Message: "success",
-		Data: users,
+		Code: 0,
+		Msg: "success",
+		Result: users,
 	}); err != nil {
 
 	} else {
 		if _, err := writer.Write(result); err != nil {
 			log.Fatal("ERR: marshal request", err)
 		}
+	}
+}
+
+func Health(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
+	writer.WriteHeader(200)
+	if _, err := writer.Write([]byte("Socket Service is OK!")); err != nil {
+		log.Printf("%v", err)
 	}
 }

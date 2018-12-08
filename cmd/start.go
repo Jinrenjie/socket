@@ -14,6 +14,7 @@ import (
 	"socket/api"
 	"socket/database"
 	"socket/internal/im"
+	"socket/internal/service"
 	"strconv"
 )
 
@@ -109,12 +110,17 @@ func startService() {
 	handler, err := mux.Build([]denco.Handler{
 		mux.GET(socket["prefix"], im.Handle),
 		mux.GET(apiPrefix + "/check/:id", api.CheckOnline),
-		mux.GET(apiPrefix + "/connections", api.Connections),
+		mux.GET("/debug/uid/all", api.Connections),
 		mux.POST(apiPrefix + "/deliver/:id", api.Deliver),
+		mux.GET("/health", api.Health),
 	})
 	if err != nil {
 		panic(err)
 	}
+
+	port, err := strconv.Atoi(web["port"])
+	go service.Registration(web["host"], port, ssl)
+
 	//http.Handle("/", http.FileServer(http.Dir("web")))
 	socketAddr := fmt.Sprintf("%v:%v", web["host"], web["port"])
 
