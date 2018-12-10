@@ -11,8 +11,8 @@ var (
 
 func CreateRedisPool(addr, password string, db int) {
 	Pool = &redis.Pool{
-		MaxIdle:     100,
-		MaxActive:   500,
+		MaxIdle:     30,
+		MaxActive:   50,
 		IdleTimeout: 5e9,
 		Wait: true,
 		Dial: func() (redis.Conn, error) {

@@ -3,8 +3,9 @@ package im
 import (
 	"fmt"
 	"github.com/garyburd/redigo/redis"
-	"log"
 	"socket/database"
+	"socket/internal/logs"
+	"time"
 )
 
 type Status struct {
@@ -17,41 +18,56 @@ type Status struct {
 func Online(id string, fd string, addr string, platform string, version string) {
 	connection := database.Pool.Get()
 	defer func() {
-		err := connection.Close()
-		if err != nil {
-			log.Printf("%v", err)
+		if err := connection.Close(); err != nil {
+			logs.Save(&logs.Payload{
+				Uid:        id,
+				Fd:         fd,
+				Type:       "connection-close",
+				Body:       err.Error(),
+				CreateTime: time.Now().Unix(),
+				CreateDate: time.Now().Format("2006-01-02"),
+			})
 		}
 	}()
 	key := fmt.Sprintf("users:%v", id)
 	value := fmt.Sprintf("%v-%v-%v", addr, platform, version)
-	_, err := connection.Do("HMSET", key, fd, value)
-	if err != nil {
-		log.Printf("%v", err)
-	}
-	err = connection.Close()
-	if err != nil {
-		log.Printf("%v", err)
+	if _, err := connection.Do("HMSET", key, fd, value); err != nil {
+		logs.Save(&logs.Payload{
+			Uid:        id,
+			Fd:         fd,
+			Type:       "online",
+			Body:       err.Error(),
+			CreateTime: time.Now().Unix(),
+			CreateDate: time.Now().Format("2006-01-02"),
+		})
 	}
 }
 
 // Unbind the user ID when the user goes offline
 func Offline(id, fd string) {
-	log.Printf("close: %v:%v", id, fd)
 	connection := database.Pool.Get()
 	defer func() {
-		err := connection.Close()
-		if err != nil {
-			log.Printf("%v", err)
+		if err := connection.Close(); err != nil {
+			logs.Save(&logs.Payload{
+				Uid:        id,
+				Fd:         fd,
+				Type:       "connection-close",
+				Body:       err.Error(),
+				CreateTime: time.Now().Unix(),
+				CreateDate: time.Now().Format("2006-01-02"),
+			})
 		}
 	}()
 	key := fmt.Sprintf("users:%v", id)
-	_, err := connection.Do("HDEL", key, fd)
-	if err != nil {
-		log.Printf("User offline %v", err)
-	}
-	err = connection.Close()
-	if err != nil {
-		log.Printf("%v", err)
+	if _, err := connection.Do("HDEL", key, fd); err != nil {
+		logs.Save(&logs.Payload{
+			Uid:        id,
+			Fd:         fd,
+			Type:       "offline",
+			Body:       err.Error(),
+			CreateTime: time.Now().Unix(),
+			CreateDate: time.Now().Format("2006-01-02"),
+		})
 	}
 }
 
@@ -61,7 +77,14 @@ func CheckById(id string) bool {
 	key := fmt.Sprintf("users:%v", id)
 	r, err := redis.Bool(connection.Do("EXISTS", key))
 	if err != nil {
-		log.Println(err)
+		logs.Save(&logs.Payload{
+			Uid:        id,
+			Fd:         "",
+			Type:       "check-online",
+			Body:       err.Error(),
+			CreateTime: time.Now().Unix(),
+			CreateDate: time.Now().Format("2006-01-02"),
+		})
 	}
 	return r
 }
@@ -71,7 +94,14 @@ func GetClients(id string) []string {
 	key := fmt.Sprintf("users:%v", id)
 	clients, err := redis.Strings(connection.Do("HKEYS", key))
 	if err != nil {
-		log.Println(err)
+		logs.Save(&logs.Payload{
+			Uid:        id,
+			Fd:         "",
+			Type:       "get-clients",
+			Body:       err.Error(),
+			CreateTime: time.Now().Unix(),
+			CreateDate: time.Now().Format("2006-01-02"),
+		})
 	}
 
 	return clients

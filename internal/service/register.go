@@ -49,6 +49,4 @@ func Registration(addr string, port int, ssl bool) {
 	if err := client.Agent().ServiceRegister(registration); err != nil {
 		log.Fatal("register server error :", err)
 	}
-
-	//log.Println(client.Agent())
 }

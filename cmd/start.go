@@ -119,7 +119,9 @@ func startService() {
 	}
 
 	port, err := strconv.Atoi(web["port"])
-	go service.Registration(web["host"], port, ssl)
+	if viper.GetBool("consul.enable") {
+		service.Registration(web["host"], port, ssl)
+	}
 
 	//http.Handle("/", http.FileServer(http.Dir("web")))
 	socketAddr := fmt.Sprintf("%v:%v", web["host"], web["port"])

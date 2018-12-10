@@ -107,14 +107,13 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 		}
 	}()
 
-	go logs.Save(&logs.Payload{
+	logs.Save(&logs.Payload{
 		Uid:        id,
 		Fd:         fd,
 		Type:       "connection",
 		Body:       "Connected",
-		CreateTime: time.Now().String(),
+		CreateTime: time.Now().Unix(),
 		CreateDate: time.Now().Format("2006-01-02"),
-		Microtime:  time.Now().UnixNano() / 1000,
 	})
 
 	// Register our new client
@@ -135,14 +134,13 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 		// Read in a new message as JSON and map it to a Message object
 		_, _, err := connection.ReadMessage()
 		if err != nil {
-			go logs.Save(&logs.Payload{
+			logs.Save(&logs.Payload{
 				Uid:        id,
 				Fd:         fd,
 				Type:       "connection",
 				Body:       "Disconnected",
-				CreateTime: time.Now().String(),
+				CreateTime: time.Now().Unix(),
 				CreateDate: time.Now().Format("2006-01-02"),
-				Microtime:  time.Now().UnixNano() / 1000,
 			})
 			connections.Delete(fd)
 			Offline(id, fd)
@@ -172,24 +170,22 @@ func DeliverMessage(id string, message []byte) []DeliverResult {
 			if err := connection.WriteMessage(websocket.TextMessage, message); err != nil {
 				client.Status = "failure"
 				log.Printf("send message error %v", err)
-				go logs.Save(&logs.Payload{
+				logs.Save(&logs.Payload{
 					Uid:        id,
 					Fd:         fd,
 					Type:       "deliver",
 					Body:       "failure",
-					CreateTime: time.Now().String(),
+					CreateTime: time.Now().Unix(),
 					CreateDate: time.Now().Format("2006-01-02"),
-					Microtime:  time.Now().UnixNano() / 1000,
 				})
 			} else {
-				go logs.Save(&logs.Payload{
+				logs.Save(&logs.Payload{
 					Uid:        id,
 					Fd:         fd,
 					Type:       "deliver",
 					Body:       "success",
-					CreateTime: time.Now().String(),
+					CreateTime: time.Now().Unix(),
 					CreateDate: time.Now().Format("2006-01-02"),
-					Microtime:  time.Now().UnixNano() / 1000,
 				})
 				client.Status = "success"
 			}

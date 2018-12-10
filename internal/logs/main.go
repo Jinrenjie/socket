@@ -13,9 +13,8 @@ type Payload struct {
 	Fd string `json:"fd"`
 	Type string `json:"type"`
 	Body interface{} `json:"body"`
-	CreateTime string `json:"create_time"`
+	CreateTime int64 `json:"create_time"`
 	CreateDate string `json:"create_date"`
-	Microtime int64 `json:"microtime"`
 	encoded []byte
 	err     error
 }
@@ -81,7 +80,7 @@ func logMongoDB(payload *Payload)  {
 	}()
 
 	if err := collection.Insert(payload); err != nil {
-		panic(err)
+
 	}
 }
 

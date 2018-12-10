@@ -1,6 +1,6 @@
 web:
   host: 127.0.0.1
-  port: 8083
+  port: 8001
   name: George
   pass: George@1994
 
@@ -45,6 +45,7 @@ log:
   collection: websocketlogs
 
 consul:
+  enable: false
   host: 192.168.5.253
   port: 8500
   scheme: http
