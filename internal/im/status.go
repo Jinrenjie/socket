@@ -2,6 +2,7 @@ package im
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/Jinrenjie/socket/database"
@@ -32,7 +33,10 @@ func Online(id string, fd string, addr string, platform string, version string) 
 	}()
 	key := fmt.Sprintf("users:%v", id)
 	value := fmt.Sprintf("%v-%v-%v", addr, platform, version)
+
+	fmt.Println(key, fd, value)
 	if _, err := connection.Do("HMSET", key, fd, value); err != nil {
+		log.Fatalf("connection.Do HMSET error %v", err)
 		logs.Save(&logs.Payload{
 			Uid:        id,
 			Fd:         fd,
