@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -132,7 +133,7 @@ func startService() {
 
 	port, err := strconv.Atoi(web["port"])
 	if err != nil {
-
+		log.Println(err)
 	}
 	if viper.GetBool("consul.enable") {
 		service.Registration(web["host"], port, ssl)

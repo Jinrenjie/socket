@@ -14,6 +14,7 @@ require (
 	github.com/garyburd/redigo v1.6.0
 	github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db // indirect
 	github.com/google/uuid v1.1.0
+	github.com/gorilla/handlers v1.4.0 // indirect
 	github.com/gorilla/websocket v1.4.0
 	github.com/hashicorp/consul v1.4.0
 	github.com/hashicorp/go-cleanhttp v0.5.0
