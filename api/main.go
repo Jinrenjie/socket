@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fengpf/socket/database"
-	"github.com/fengpf/socket/internal/im"
-	"github.com/fengpf/socket/internal/logs"
+	"github.com/Jinrenjie/socket/database"
+	"github.com/Jinrenjie/socket/internal/im"
+	"github.com/Jinrenjie/socket/internal/logs"
 	"github.com/garyburd/redigo/redis"
 	"github.com/naoina/denco"
 )
@@ -20,6 +20,18 @@ type Response struct {
 	Code   int         `json:"code"`
 	Msg    string      `json:"msg"`
 	Result interface{} `json:"result"`
+}
+
+type User struct {
+	Uid     string      `json:"uid"`
+	Clients interface{} `json:"clients"`
+}
+
+type Client struct {
+	Fd       string `json:"fd"`
+	Address  string `json:"address"`
+	Platform string `json:"platform"`
+	Version  string `json:"version"`
 }
 
 // Deliver message to user
@@ -85,17 +97,6 @@ func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco
 
 // Get all connections
 func Connections(writer http.ResponseWriter, request *http.Request, params denco.Params) {
-	type User struct {
-		Uid     string      `json:"uid"`
-		Clients interface{} `json:"clients"`
-	}
-
-	type Client struct {
-		Fd       string `json:"fd"`
-		Address  string `json:"address"`
-		Platform string `json:"platform"`
-		Version  string `json:"version"`
-	}
 	var (
 		userskey []string
 		err      error

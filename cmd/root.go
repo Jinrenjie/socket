@@ -2,15 +2,16 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "socket",
 	Short: "Web Socket service",
-	Long: "Instant Messaging service based on Golang implementation",
+	Long:  "Instant Messaging service based on Golang implementation",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },

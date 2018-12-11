@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/fengpf/socket/database"
-	"github.com/fengpf/socket/internal/logs"
+	"github.com/Jinrenjie/socket/database"
+	"github.com/Jinrenjie/socket/internal/logs"
 	"github.com/garyburd/redigo/redis"
 )
 

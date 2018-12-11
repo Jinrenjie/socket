@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fengpf/socket/internal/logs"
+	"github.com/Jinrenjie/socket/internal/logs"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"github.com/naoina/denco"

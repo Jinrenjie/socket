@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,12 +11,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/fengpf/socket/api"
-	"github.com/fengpf/socket/database"
-	"github.com/fengpf/socket/internal/debug"
-	"github.com/fengpf/socket/internal/im"
-	"github.com/fengpf/socket/internal/logs"
-	"github.com/fengpf/socket/internal/service"
+	"github.com/Jinrenjie/socket/api"
+	"github.com/Jinrenjie/socket/database"
+	"github.com/Jinrenjie/socket/internal/debug"
+	"github.com/Jinrenjie/socket/internal/im"
+	"github.com/Jinrenjie/socket/internal/logs"
+	"github.com/Jinrenjie/socket/internal/service"
 	"github.com/garyburd/redigo/redis"
 	"github.com/naoina/denco"
 	"github.com/spf13/cobra"
