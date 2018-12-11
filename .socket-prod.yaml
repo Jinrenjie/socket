@@ -10,14 +10,14 @@ api:
 
 # Redis 缓存配置
 redis:
-  host: 10.29.87.219
+  host: 127.0.0.1
   port: 6378
   pass:
   db: 1
 
 # Kafka 配置
 kafka:
-  broker: 115.28.7.104:9092
+  broker: 127.0.0.1:9092
   topic: websocketlogs
 
 # Socket 路由
@@ -36,7 +36,7 @@ ssl:
 # log
 log:
   mongodb:
-  host: 10.30.108.138
+  host: 127.0.0.1
   port: 27018
   timeout: 600
   username:

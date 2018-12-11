@@ -40,7 +40,7 @@ redis:
 
 # Kafka 配置
 kafka:
-  broker: 115.28.7.104:9092
+  broker: 127.0.0.1:9092
   topic: websocketlogs
 
 # Socket 路由
