@@ -24,7 +24,7 @@ import (
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Display this service version",
-	Long: "Display this service version",
+	Long:  "Display this service version",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("version 1.0.1")
 	},

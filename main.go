@@ -14,7 +14,7 @@
 
 package main
 
-import "socket/cmd"
+import "github.com/fengpf/socket/cmd"
 
 func main() {
 	cmd.Execute()

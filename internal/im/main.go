@@ -4,21 +4,22 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
-	"github.com/google/uuid"
-	"github.com/gorilla/websocket"
-	"github.com/naoina/denco"
 	"log"
 	"net/http"
 	"net/url"
 	"reflect"
-	"socket/internal/logs"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/fengpf/socket/internal/logs"
+	"github.com/google/uuid"
+	"github.com/gorilla/websocket"
+	"github.com/naoina/denco"
 )
 
 type DeliverResult struct {
-	Fd string `json:"fd"`
+	Fd     string `json:"fd"`
 	Status string `json:"status"`
 }
 
@@ -62,7 +63,7 @@ func bind(request *http.Request) (id, version, platform string, err error) {
 	}
 	index := strings.LastIndex(request.URL.String(), "token=")
 	if index > 0 {
-		tokenStr := request.URL.String()[index + 6:]
+		tokenStr := request.URL.String()[index+6:]
 		if tokenStr != "" {
 			tokenValue, err := url.ParseQuery(tokenStr)
 			if err != nil {

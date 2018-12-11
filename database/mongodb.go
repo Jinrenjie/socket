@@ -2,18 +2,19 @@ package database
 
 import (
 	"fmt"
-	"github.com/spf13/viper"
-	"gopkg.in/mgo.v2"
 	"log"
 	"sync"
 	"time"
+
+	"github.com/spf13/viper"
+	mgo "gopkg.in/mgo.v2"
 )
 
 var (
 	dialInfo *mgo.DialInfo
-	err error
-	Session *mgo.Session
-	once sync.Once
+	err      error
+	Session  *mgo.Session
+	once     sync.Once
 )
 
 func Connection() *mgo.Session {

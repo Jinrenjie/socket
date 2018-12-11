@@ -2,24 +2,26 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/garyburd/redigo/redis"
-	"github.com/naoina/denco"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
+
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"socket/api"
-	"socket/database"
-	"socket/internal/debug"
-	"socket/internal/im"
-	"socket/internal/logs"
-	"socket/internal/service"
 	"strconv"
 	"time"
+
+	"github.com/fengpf/socket/api"
+	"github.com/fengpf/socket/database"
+	"github.com/fengpf/socket/internal/debug"
+	"github.com/fengpf/socket/internal/im"
+	"github.com/fengpf/socket/internal/logs"
+	"github.com/fengpf/socket/internal/service"
+	"github.com/garyburd/redigo/redis"
+	"github.com/naoina/denco"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -112,9 +114,9 @@ func startService() {
 	mux := denco.NewMux()
 	handler, err := mux.Build([]denco.Handler{
 		mux.GET(socket["prefix"], im.Handle),
-		mux.GET(apiPrefix + "/check/:id", api.CheckOnline),
+		mux.GET(apiPrefix+"/check/:id", api.CheckOnline),
 		mux.GET("/debug/uid/all", api.Connections),
-		mux.POST(apiPrefix + "/deliver/:id", api.Deliver),
+		mux.POST(apiPrefix+"/deliver/:id", api.Deliver),
 		mux.GET("/health", api.Health),
 	})
 	if err != nil {

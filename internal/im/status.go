@@ -2,16 +2,17 @@ package im
 
 import (
 	"fmt"
-	"github.com/garyburd/redigo/redis"
-	"socket/database"
-	"socket/internal/logs"
 	"time"
+
+	"github.com/fengpf/socket/database"
+	"github.com/fengpf/socket/internal/logs"
+	"github.com/garyburd/redigo/redis"
 )
 
 type Status struct {
-	Address string `redis:"ip"`
-	Platform    string `redis:"platform"`
-	Version     string `redis:"version"`
+	Address  string `redis:"ip"`
+	Platform string `redis:"platform"`
+	Version  string `redis:"version"`
 }
 
 // Bind the user ID when the user goes online
