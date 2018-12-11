@@ -13,14 +13,17 @@ import (
 	"path/filepath"
 	"socket/api"
 	"socket/database"
+	"socket/internal/debug"
 	"socket/internal/im"
+	"socket/internal/logs"
 	"socket/internal/service"
 	"strconv"
+	"time"
 )
 
 var (
-	ssl bool
-	daemon bool
+	ssl      bool
+	daemon   bool
 	confFile string
 )
 
@@ -57,7 +60,6 @@ var startCmd = &cobra.Command{
 func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.AddCommand(startCmd)
-
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
@@ -118,7 +120,20 @@ func startService() {
 		panic(err)
 	}
 
+	//http.HandleFunc(socket["prefix"], im.Handle)
+	//http.HandleFunc(apiPrefix + "/check/:id", api.CheckOnline)
+	//http.HandleFunc(apiPrefix + "/deliver/:id", api.Deliver)
+	//http.HandleFunc(apiPrefix, im.Handle)
+	//http.HandleFunc("/debug/uid/all", api.Connections)
+
+	if viper.GetBool("debug") {
+		go debug.StartDebug()
+	}
+
 	port, err := strconv.Atoi(web["port"])
+	if err != nil {
+
+	}
 	if viper.GetBool("consul.enable") {
 		service.Registration(web["host"], port, ssl)
 	}
@@ -152,6 +167,18 @@ func bootstrap() {
 
 func clear() {
 	connection := database.Pool.Get()
+	defer func() {
+		if err := connection.Close(); err != nil {
+			logs.Save(&logs.Payload{
+				Uid:        "",
+				Fd:         "",
+				Type:       "close-redis-connection",
+				Body:       err.Error(),
+				CreateTime: time.Now().Unix(),
+				CreateDate: time.Now().Format("2006-01-02"),
+			})
+		}
+	}()
 	if _, err := redis.String(connection.Do("FLUSHDB")); err != nil {
 		panic(err)
 	}

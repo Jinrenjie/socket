@@ -61,3 +61,5 @@ service:
     timeout: 1s
     interval: 2s
     deregister: 5s
+
+debug: true

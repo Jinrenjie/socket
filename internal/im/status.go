@@ -22,7 +22,7 @@ func Online(id string, fd string, addr string, platform string, version string) 
 			logs.Save(&logs.Payload{
 				Uid:        id,
 				Fd:         fd,
-				Type:       "connection-close",
+				Type:       "close-redis-connection",
 				Body:       err.Error(),
 				CreateTime: time.Now().Unix(),
 				CreateDate: time.Now().Format("2006-01-02"),
@@ -51,7 +51,7 @@ func Offline(id, fd string) {
 			logs.Save(&logs.Payload{
 				Uid:        id,
 				Fd:         fd,
-				Type:       "connection-close",
+				Type:       "close-redis-connection",
 				Body:       err.Error(),
 				CreateTime: time.Now().Unix(),
 				CreateDate: time.Now().Format("2006-01-02"),
@@ -74,6 +74,18 @@ func Offline(id, fd string) {
 // Check user status by id
 func CheckById(id string) bool {
 	connection := database.Pool.Get()
+	defer func() {
+		if err := connection.Close(); err != nil {
+			logs.Save(&logs.Payload{
+				Uid:        id,
+				Fd:         "",
+				Type:       "close-redis-connection",
+				Body:       err.Error(),
+				CreateTime: time.Now().Unix(),
+				CreateDate: time.Now().Format("2006-01-02"),
+			})
+		}
+	}()
 	key := fmt.Sprintf("users:%v", id)
 	r, err := redis.Bool(connection.Do("EXISTS", key))
 	if err != nil {
@@ -91,6 +103,18 @@ func CheckById(id string) bool {
 
 func GetClients(id string) []string {
 	connection := database.Pool.Get()
+	defer func() {
+		if err := connection.Close(); err != nil {
+			logs.Save(&logs.Payload{
+				Uid:        id,
+				Fd:         "",
+				Type:       "close-redis-connection",
+				Body:       err.Error(),
+				CreateTime: time.Now().Unix(),
+				CreateDate: time.Now().Format("2006-01-02"),
+			})
+		}
+	}()
 	key := fmt.Sprintf("users:%v", id)
 	clients, err := redis.Strings(connection.Do("HKEYS", key))
 	if err != nil {

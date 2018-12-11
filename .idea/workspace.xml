@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83d1f989-5701-45cb-b599-3d3025d74316" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/internal/debug/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.socket.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.socket.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/start.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/redis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/im/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/im/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/im/server.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/im/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/im/status.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/logs/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/logs/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/service/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/register.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +18,62 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="85" column="67" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cmd/start.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="685">
+              <caret line="130" column="5" lean-forward="true" selection-start-line="130" selection-start-column="5" selection-end-line="130" selection-end-column="5" />
+              <folding>
+                <element signature="e#13#337#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.socket.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="930">
+              <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/internal/im/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="747">
+              <caret line="94" column="64" selection-start-line="94" selection-start-column="64" selection-end-line="94" selection-end-column="64" />
+              <folding>
+                <element signature="e#12#212#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/internal/debug/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding>
+                <element signature="e#15#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,6 +94,9 @@
       <find>text</find>
       <find>DefaultConf</find>
       <find>Node</find>
+      <find>debugchar</find>
+      <find>debug</find>
+      <find>isExist</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -58,7 +115,6 @@
         <option value="$PROJECT_DIR$/client.go" />
         <option value="$PROJECT_DIR$/service.go" />
         <option value="$PROJECT_DIR$/server.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/cmd/version.go" />
         <option value="$PROJECT_DIR$/config/main.go" />
         <option value="$PROJECT_DIR$/internal/log/main.go" />
@@ -72,12 +128,14 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/cmd/stop.go" />
         <option value="$PROJECT_DIR$/.socket-prod.yaml" />
-        <option value="$PROJECT_DIR$/api/main.go" />
         <option value="$PROJECT_DIR$/internal/service/register.go" />
         <option value="$PROJECT_DIR$/internal/logs/main.go" />
-        <option value="$PROJECT_DIR$/internal/im/main.go" />
         <option value="$PROJECT_DIR$/database/redis.go" />
+        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/internal/im/status.go" />
+        <option value="$PROJECT_DIR$/internal/debug/main.go" />
+        <option value="$PROJECT_DIR$/internal/im/main.go" />
+        <option value="$PROJECT_DIR$/api/main.go" />
         <option value="$PROJECT_DIR$/.socket.yaml" />
         <option value="$PROJECT_DIR$/cmd/start.go" />
       </list>
@@ -94,7 +152,37 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
+              <item name="cmd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
+              <item name="internal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
+              <item name="ssl" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -133,8 +221,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1109375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12460937" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -147,7 +236,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49804688" visible="true" weight="0.27965492" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49804688" visible="true" weight="0.19626169" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5019531" side_tool="true" weight="0.27879342" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -163,163 +252,6 @@
     <proxy>direct</proxy>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/os/exec/exec.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="309" column="1" selection-start-line="309" selection-start-column="1" selection-end-line="309" selection-end-column="1" />
-          <folding>
-            <element signature="e#1285#1408#0" />
-            <element signature="e#1441#1508#0" />
-            <element signature="e#1669#4950#0" />
-            <element signature="e#5575#5800#0" />
-            <element signature="e#5589#5647#0" />
-            <element signature="e#5680#5786#0" />
-            <element signature="e#5725#5755#0" />
-            <element signature="e#5761#5783#0" />
-            <element signature="e#6093#6196#0" />
-            <element signature="e#6110#6137#0" />
-            <element signature="e#6368#6419#0" />
-            <element signature="e#6384#6400#0" />
-            <element signature="e#6451#6512#0" />
-            <element signature="e#6470#6489#0" />
-            <element signature="e#6544#6613#0" />
-            <element signature="e#6566#6586#0" />
-            <element signature="e#6908#7522#0" />
-            <element signature="e#6929#7056#0" />
-            <element signature="e#6978#6993#0" />
-            <element signature="e#7094#7114#0" />
-            <element signature="e#7157#7170#0" />
-            <element signature="e#7320#7503#0" />
-            <element signature="e#7413#7431#0" />
-            <element signature="e#7468#7487#0" />
-            <element signature="e#7571#7611#0" />
-            <element signature="e#7660#7793#0" />
-            <element signature="e#7720#7754#0" />
-            <element signature="e#7863#8405#0" />
-            <element signature="e#7878#8025#0" />
-            <element signature="e#7947#7962#0" />
-            <element signature="e#8057#8077#0" />
-            <element signature="e#8120#8133#0" />
-            <element signature="e#8283#8386#0" />
-            <element signature="e#8459#8508#0" />
-            <element signature="e#8489#8506#0" />
-            <element signature="e#9194#9211#0" />
-            <element signature="e#9483#9978#0" />
-            <element signature="e#9517#9555#0" />
-            <element signature="e#9570#9598#0" />
-            <element signature="e#9635#9663#0" />
-            <element signature="e#9713#9741#0" />
-            <element signature="e#9888#9909#0" />
-            <element signature="e#10192#11779#0" />
-            <element signature="e#10219#10325#0" />
-            <element signature="e#10356#10534#0" />
-            <element signature="e#10417#10517#0" />
-            <element signature="e#10556#10605#0" />
-            <element signature="e#10623#10779#0" />
-            <element signature="e#10627#10776#0" />
-            <element signature="e#10638#10761#0" />
-            <element signature="e#10846#10890#0" />
-            <element signature="e#10891#11078#0" />
-            <element signature="e#10933#11033#0" />
-            <element signature="e#11213#11309#0" />
-            <element signature="e#11326#11422#0" />
-            <element signature="e#11542#11602#0" />
-            <element signature="e#11571#11595#0" />
-            <element signature="e#11621#11764#0" />
-            <element signature="e#11670#11759#0" />
-            <element signature="e#11675#11755#0" />
-            <element signature="e#11687#11728#0" />
-            <element signature="e#11855#12356#0" />
-            <element signature="e#12393#12428#0" />
-            <element signature="e#13151#13709#0" />
-            <element signature="e#13174#13219#0" />
-            <element signature="e#13235#13292#0" />
-            <element signature="e#13367#13391#0" />
-            <element signature="e#13461#13544#0" />
-            <element signature="e#13517#13541#0" />
-            <element signature="e#13600#13617#0" />
-            <element signature="e#13643#13688#0" />
-            <element signature="e#13927#14324#0" />
-            <element signature="e#13949#14006#0" />
-            <element signature="e#14099#14148#0" />
-            <element signature="e#14195#14294#0" />
-            <element signature="e#14233#14291#0" />
-            <element signature="e#14472#14720#0" />
-            <element signature="e#14494#14551#0" />
-            <element signature="e#14572#14629#0" />
-            <element signature="e#15148#15541#0" />
-            <element signature="e#15169#15225#0" />
-            <element signature="e#15247#15317#0" />
-            <element signature="e#15359#15381#0" />
-            <element signature="e#15558#15607#0" />
-            <element signature="e#15643#15680#0" />
-            <element signature="e#15710#15737#0" />
-            <element signature="e#16245#16614#0" />
-            <element signature="e#16267#16324#0" />
-            <element signature="e#16346#16417#0" />
-            <element signature="e#16459#16481#0" />
-            <element signature="e#17131#17500#0" />
-            <element signature="e#17153#17210#0" />
-            <element signature="e#17232#17303#0" />
-            <element signature="e#17345#17367#0" />
-            <element signature="e#17701#18239#0" />
-            <element signature="e#18304#18798#0" />
-            <element signature="e#18439#18491#0" />
-            <element signature="e#18605#18778#0" />
-            <element signature="e#18751#18775#0" />
-            <element signature="e#19011#19151#0" />
-            <element signature="e#19055#19139#0" />
-            <element signature="e#19196#19604#0" />
-            <element signature="e#19218#19240#0" />
-            <element signature="e#19260#19303#0" />
-            <element signature="e#19632#19671#0" />
-            <element signature="e#19644#19659#0" />
-            <element signature="e#19883#19939#0" />
-            <element signature="e#20124#20526#0" />
-            <element signature="e#20236#20512#0" />
-            <element signature="e#20281#20323#0" />
-            <element signature="e#20360#20391#0" />
-            <element signature="e#20428#20465#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssl/fullchain.cer">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="64" lean-forward="true" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/net/http/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/encoding/json/decode.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/io/ioutil/ioutil.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.html" />
-    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/encoding/json/encode.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="156" column="5" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/encoding/hex/hex.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -358,13 +290,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/!shopify/sarama@v1.19.0/async_producer.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
@@ -386,13 +311,6 @@
           <folding>
             <element signature="e#18#84#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/naoina/denco@v0.0.0-20180930074809-8475105a6b4c/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="56" column="46" lean-forward="true" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -421,16 +339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="291" column="5" selection-start-line="291" selection-start-column="5" selection-end-line="291" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="360">
-            <caret line="76" column="56" lean-forward="true" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -1237,16 +1145,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/internal/im/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding>
-            <element signature="e#12#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/internal/im/server.go" />
     <entry file="file://$PROJECT_DIR$/internal/logs/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
@@ -1285,20 +1184,6 @@
           <folding>
             <element signature="e#602#749#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/internal/im/status.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.socket.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1564,13 +1449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/internal/im/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="103" column="36" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/internal/service/register.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1581,17 +1459,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/start.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="112" column="46" selection-start-line="112" selection-start-column="46" selection-end-line="112" selection-end-column="46" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="410">
+            <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/main.go">
+    <entry file="file://$PROJECT_DIR$/config/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-320">
-          <caret line="83" column="5" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+        <state relative-caret-position="405">
+          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/naoina/denco@v0.0.0-20180930074809-8475105a6b4c/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/shirou/gopsutil@v2.18.11+incompatible/process/process_darwin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="592" column="17" lean-forward="true" selection-start-line="592" selection-start-column="17" selection-end-line="592" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go.sum">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="81" column="63" lean-forward="true" selection-start-line="81" selection-start-column="63" selection-end-line="81" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go.mod">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pkg/mod/github.com/mkevac/debugcharts@v0.0.0-20180124214838-d3203a8fa926/debugcharts.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+          <folding>
+            <element signature="e#532#781#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1599,6 +1525,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="33" lean-forward="true" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.11.2/libexec/src/net/http/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="2416" column="53" selection-start-line="2416" selection-start-column="53" selection-end-line="2416" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/internal/im/status.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/internal/debug/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="e#15#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/internal/im/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="94" column="64" selection-start-line="94" selection-start-column="64" selection-end-line="94" selection-end-column="64" />
+          <folding>
+            <element signature="e#12#212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="85" column="67" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.socket.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/start.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="130" column="5" lean-forward="true" selection-start-line="130" selection-start-column="5" selection-end-line="130" selection-end-column="5" />
+          <folding>
+            <element signature="e#13#337#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

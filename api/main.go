@@ -10,7 +10,9 @@ import (
 	"net/http"
 	"socket/database"
 	"socket/internal/im"
+	"socket/internal/logs"
 	"strings"
+	"time"
 )
 
 type Response struct {
@@ -98,6 +100,18 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 		err error
 	)
 	connection := database.Pool.Get()
+	defer func() {
+		if err := connection.Close(); err != nil {
+			logs.Save(&logs.Payload{
+				Uid:        "api",
+				Fd:         "api",
+				Type:       "close-redis-connection",
+				Body:       err.Error(),
+				CreateTime: time.Now().Unix(),
+				CreateDate: time.Now().Format("2006-01-02"),
+			})
+		}
+	}()
 	origin := request.URL.Query()
 	id := origin.Get("id")
 	if id != "" {
