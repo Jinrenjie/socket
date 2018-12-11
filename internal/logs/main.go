@@ -2,27 +2,28 @@ package logs
 
 import (
 	"encoding/json"
+	"log"
+
+	"github.com/Jinrenjie/socket/database"
 	"github.com/Shopify/sarama"
 	"github.com/spf13/viper"
-	"log"
-	"socket/database"
 )
 
 type Payload struct {
-	Uid string `json:"uid"`
-	Fd string `json:"fd"`
-	Type string `json:"type"`
-	Body interface{} `json:"body"`
-	CreateTime int64 `json:"create_time"`
-	CreateDate string `json:"create_date"`
-	encoded []byte
-	err     error
+	Uid        string      `json:"uid"`
+	Fd         string      `json:"fd"`
+	Type       string      `json:"type"`
+	Body       interface{} `json:"body"`
+	CreateTime int64       `json:"create_time"`
+	CreateDate string      `json:"create_date"`
+	encoded    []byte
+	err        error
 }
 
 var (
 	// Define a broker and topic for kafka
 	broker, topic string
-	producer sarama.AsyncProducer
+	producer      sarama.AsyncProducer
 )
 
 func (ale *Payload) ensureEncoded() {
@@ -65,12 +66,12 @@ func createAsyncProducer(broker string) sarama.AsyncProducer {
 	return producer
 }
 
-func Save(payload * Payload)  {
+func Save(payload *Payload) {
 	//logKafka(payload)
 	logMongoDB(payload)
 }
 
-func logMongoDB(payload *Payload)  {
+func logMongoDB(payload *Payload) {
 	logger := viper.GetStringMapString("log")
 	session := database.Connection()
 	collection := session.DB(logger["database"]).C(logger["collection"])
@@ -96,7 +97,7 @@ func logKafka(content *Payload) {
 	}
 	producer.Input() <- &sarama.ProducerMessage{
 		Topic: topic,
-		Key: sarama.StringEncoder(content.Uid),
+		Key:   sarama.StringEncoder(content.Uid),
 		Value: content,
 	}
 }

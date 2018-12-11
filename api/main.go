@@ -3,29 +3,42 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/garyburd/redigo/redis"
-	"github.com/naoina/denco"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"socket/database"
-	"socket/internal/im"
-	"socket/internal/logs"
 	"strings"
 	"time"
+
+	"github.com/Jinrenjie/socket/database"
+	"github.com/Jinrenjie/socket/internal/im"
+	"github.com/Jinrenjie/socket/internal/logs"
+	"github.com/garyburd/redigo/redis"
+	"github.com/naoina/denco"
 )
 
 type Response struct {
-	Code int `json:"code"`
-	Msg string `json:"msg"`
+	Code   int         `json:"code"`
+	Msg    string      `json:"msg"`
 	Result interface{} `json:"result"`
 }
 
+type User struct {
+	Uid     string      `json:"uid"`
+	Clients interface{} `json:"clients"`
+}
+
+type Client struct {
+	Fd       string `json:"fd"`
+	Address  string `json:"address"`
+	Platform string `json:"platform"`
+	Version  string `json:"version"`
+}
+
 // Deliver message to user
-func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
+func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Params) {
 	res := Response{
 		Code: 0,
-		Msg: "success",
+		Msg:  "success",
 	}
 
 	bytes, err := ioutil.ReadAll(request.Body)
@@ -64,10 +77,10 @@ func Deliver(writer http.ResponseWriter, request *http.Request, params denco.Par
 }
 
 // Check user online status
-func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
+func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco.Params) {
 	res := Response{
 		Code: 0,
-		Msg: "success",
+		Msg:  "success",
 	}
 
 	id := params.Get("id")
@@ -83,21 +96,10 @@ func CheckOnline(writer http.ResponseWriter, request *http.Request, params denco
 }
 
 // Get all connections
-func Connections(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
-	type User struct {
-		Uid string `json:"uid"`
-		Clients interface{} `json:"clients"`
-	}
-
-	type Client struct {
-		Fd string `json:"fd"`
-		Address string `json:"address"`
-		Platform string `json:"platform"`
-		Version string `json:"version"`
-	}
+func Connections(writer http.ResponseWriter, request *http.Request, params denco.Params) {
 	var (
 		userskey []string
-		err error
+		err      error
 	)
 	connection := database.Pool.Get()
 	defer func() {
@@ -138,13 +140,13 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 		}
 		uclients := make([]Client, len(clients))
 		j := 0
-		for fd, infostring := range clients{
+		for fd, infostring := range clients {
 			info := strings.Split(infostring, "-")
 			client := Client{
-				Fd: fd,
-				Address: info[0],
+				Fd:       fd,
+				Address:  info[0],
 				Platform: info[1],
-				Version: info[2],
+				Version:  info[2],
 			}
 			uclients[j] = client
 			j++
@@ -156,8 +158,8 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 	}
 
 	if result, err := json.Marshal(Response{
-		Code: 0,
-		Msg: "success",
+		Code:   0,
+		Msg:    "success",
 		Result: users,
 	}); err != nil {
 
@@ -168,7 +170,7 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 	}
 }
 
-func Health(writer http.ResponseWriter, request *http.Request, params denco.Params)  {
+func Health(writer http.ResponseWriter, request *http.Request, params denco.Params) {
 	writer.WriteHeader(200)
 	if _, err := writer.Write([]byte("Socket Service is OK!")); err != nil {
 		log.Printf("%v", err)

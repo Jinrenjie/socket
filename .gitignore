@@ -1,4 +1,5 @@
-/.idea
+.idea
+.vscode
 socket
-/ssl
+ssl
 .env

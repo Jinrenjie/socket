@@ -16,20 +16,21 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
 	"syscall"
+
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // stopCmd represents the stop command
 var stopCmd = &cobra.Command{
 	Use:   "stop",
 	Short: "Stop Web Socket service",
-	Long: `Stop Web Socket service.`,
+	Long:  `Stop Web Socket service.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		runtime := viper.GetStringMapString("runtime")
 		path := runtime["pid"]
