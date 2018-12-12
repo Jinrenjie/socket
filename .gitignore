@@ -1,5 +1,6 @@
 .idea
 .vscode
 socket
+go.sum
 ssl
 .env
