@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/Jinrenjie/socket/database"
 	"github.com/Jinrenjie/socket/internal/im"
@@ -104,14 +103,7 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 	connection := database.Pool.Get()
 	defer func() {
 		if err := connection.Close(); err != nil {
-			logs.Save(&logs.Payload{
-				Uid:        "api",
-				Fd:         "api",
-				Type:       "close-redis-connection",
-				Body:       err.Error(),
-				CreateTime: time.Now().Unix(),
-				CreateDate: time.Now().Format("2006-01-02"),
-			})
+			logs.OutPut("api", "api", "close-redis-connection", err.Error())
 		}
 	}()
 	origin := request.URL.Query()

@@ -3,6 +3,7 @@ package logs
 import (
 	"encoding/json"
 	"log"
+	"time"
 
 	"github.com/Jinrenjie/socket/database"
 	"github.com/Shopify/sarama"
@@ -100,4 +101,15 @@ func logKafka(content *Payload) {
 		Key:   sarama.StringEncoder(content.Uid),
 		Value: content,
 	}
+}
+
+func OutPut(id, fd, ty, body string) {
+	Save(&Payload{
+		Uid:        id,
+		Fd:         fd,
+		Type:       ty,
+		Body:       body,
+		CreateTime: time.Now().Unix(),
+		CreateDate: time.Now().Format("2006-01-02"),
+	})
 }
