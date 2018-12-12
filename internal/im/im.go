@@ -2,8 +2,6 @@ package im
 
 import (
 	"fmt"
-	"log"
-	"time"
 
 	"github.com/Jinrenjie/socket/database"
 	"github.com/Jinrenjie/socket/internal/logs"
@@ -29,14 +27,7 @@ func Online(id string, fd string, addr string, platform string, version string) 
 	conn := database.Pool.Get()
 	defer func() {
 		if err := conn.Close(); err != nil {
-			logs.Save(&logs.Payload{
-				Uid:        id,
-				Fd:         fd,
-				Type:       "close-redis-connection",
-				Body:       err.Error(),
-				CreateTime: time.Now().Unix(),
-				CreateDate: time.Now().Format("2006-01-02"),
-			})
+			logs.OutPut(id, fd, "close-redis-connection", err.Error())
 		}
 	}()
 
@@ -46,15 +37,7 @@ func Online(id string, fd string, addr string, platform string, version string) 
 	key := keyUser(id)
 	value := fmt.Sprintf("%v-%v-%v", addr, platform, version)
 	if _, err := conn.Do("HMSET", key, fd, value); err != nil {
-		log.Fatalf("connection.Do HMSET error %v", err)
-		logs.Save(&logs.Payload{
-			Uid:        id,
-			Fd:         fd,
-			Type:       "online",
-			Body:       err.Error(),
-			CreateTime: time.Now().Unix(),
-			CreateDate: time.Now().Format("2006-01-02"),
-		})
+		logs.OutPut(id, fd, "online", err.Error())
 	}
 	fmt.Println(key, fd, value)
 }
@@ -64,25 +47,11 @@ func Offline(id, fd string) {
 	connection := database.Pool.Get()
 	defer func() {
 		if err := connection.Close(); err != nil {
-			logs.Save(&logs.Payload{
-				Uid:        id,
-				Fd:         fd,
-				Type:       "close-redis-connection",
-				Body:       err.Error(),
-				CreateTime: time.Now().Unix(),
-				CreateDate: time.Now().Format("2006-01-02"),
-			})
+			logs.OutPut(id, fd, "close-redis-connection", err.Error())
 		}
 	}()
 	if _, err := connection.Do("HDEL", keyUser(id), fd); err != nil {
-		logs.Save(&logs.Payload{
-			Uid:        id,
-			Fd:         fd,
-			Type:       "offline",
-			Body:       err.Error(),
-			CreateTime: time.Now().Unix(),
-			CreateDate: time.Now().Format("2006-01-02"),
-		})
+		logs.OutPut(id, fd, "offline", err.Error())
 	}
 }
 
@@ -91,26 +60,12 @@ func CheckById(id string) bool {
 	connection := database.Pool.Get()
 	defer func() {
 		if err := connection.Close(); err != nil {
-			logs.Save(&logs.Payload{
-				Uid:        id,
-				Fd:         "",
-				Type:       "close-redis-connection",
-				Body:       err.Error(),
-				CreateTime: time.Now().Unix(),
-				CreateDate: time.Now().Format("2006-01-02"),
-			})
+			logs.OutPut(id, "", "close-redis-connection", err.Error())
 		}
 	}()
 	r, err := redis.Bool(connection.Do("EXISTS", keyUser(id)))
 	if err != nil {
-		logs.Save(&logs.Payload{
-			Uid:        id,
-			Fd:         "",
-			Type:       "check-online",
-			Body:       err.Error(),
-			CreateTime: time.Now().Unix(),
-			CreateDate: time.Now().Format("2006-01-02"),
-		})
+		logs.OutPut(id, "", "check-online", err.Error())
 	}
 	return r
 }
@@ -119,26 +74,12 @@ func GetClients(id string) []string {
 	connection := database.Pool.Get()
 	defer func() {
 		if err := connection.Close(); err != nil {
-			logs.Save(&logs.Payload{
-				Uid:        id,
-				Fd:         "",
-				Type:       "close-redis-connection",
-				Body:       err.Error(),
-				CreateTime: time.Now().Unix(),
-				CreateDate: time.Now().Format("2006-01-02"),
-			})
+			logs.OutPut(id, "", "close-redis-connection", err.Error())
 		}
 	}()
 	clients, err := redis.Strings(connection.Do("HKEYS", keyUser(id)))
 	if err != nil {
-		logs.Save(&logs.Payload{
-			Uid:        id,
-			Fd:         "",
-			Type:       "get-clients",
-			Body:       err.Error(),
-			CreateTime: time.Now().Unix(),
-			CreateDate: time.Now().Format("2006-01-02"),
-		})
+		logs.OutPut(id, "", "get-clients", err.Error())
 	}
 
 	return clients
