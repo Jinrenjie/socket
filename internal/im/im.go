@@ -16,11 +16,19 @@ type Status struct {
 	Version  string `redis:"version"`
 }
 
+const (
+	_prefix = "user"
+)
+
+func keyUser(id string) string {
+	return _prefix + id
+}
+
 // Bind the user ID when the user goes online
 func Online(id string, fd string, addr string, platform string, version string) {
-	connection := database.Pool.Get()
+	conn := database.Pool.Get()
 	defer func() {
-		if err := connection.Close(); err != nil {
+		if err := conn.Close(); err != nil {
 			logs.Save(&logs.Payload{
 				Uid:        id,
 				Fd:         fd,
@@ -31,11 +39,13 @@ func Online(id string, fd string, addr string, platform string, version string) 
 			})
 		}
 	}()
-	key := fmt.Sprintf("users:%v", id)
-	value := fmt.Sprintf("%v-%v-%v", addr, platform, version)
 
-	fmt.Println(key, fd, value)
-	if _, err := connection.Do("HMSET", key, fd, value); err != nil {
+	//HMSET website google www.google.com
+	// key := fmt.Sprintf("users:%v", id)
+
+	key := keyUser(id)
+	value := fmt.Sprintf("%v-%v-%v", addr, platform, version)
+	if _, err := conn.Do("HMSET", key, fd, value); err != nil {
 		log.Fatalf("connection.Do HMSET error %v", err)
 		logs.Save(&logs.Payload{
 			Uid:        id,
@@ -46,6 +56,7 @@ func Online(id string, fd string, addr string, platform string, version string) 
 			CreateDate: time.Now().Format("2006-01-02"),
 		})
 	}
+	fmt.Println(key, fd, value)
 }
 
 // Unbind the user ID when the user goes offline
@@ -63,8 +74,7 @@ func Offline(id, fd string) {
 			})
 		}
 	}()
-	key := fmt.Sprintf("users:%v", id)
-	if _, err := connection.Do("HDEL", key, fd); err != nil {
+	if _, err := connection.Do("HDEL", keyUser(id), fd); err != nil {
 		logs.Save(&logs.Payload{
 			Uid:        id,
 			Fd:         fd,
@@ -91,8 +101,7 @@ func CheckById(id string) bool {
 			})
 		}
 	}()
-	key := fmt.Sprintf("users:%v", id)
-	r, err := redis.Bool(connection.Do("EXISTS", key))
+	r, err := redis.Bool(connection.Do("EXISTS", keyUser(id)))
 	if err != nil {
 		logs.Save(&logs.Payload{
 			Uid:        id,
@@ -120,8 +129,7 @@ func GetClients(id string) []string {
 			})
 		}
 	}()
-	key := fmt.Sprintf("users:%v", id)
-	clients, err := redis.Strings(connection.Do("HKEYS", key))
+	clients, err := redis.Strings(connection.Do("HKEYS", keyUser(id)))
 	if err != nil {
 		logs.Save(&logs.Payload{
 			Uid:        id,

@@ -1,10 +1,11 @@
 package config
 
 import (
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
+
+	"gopkg.in/yaml.v2"
 )
 
 type Redis struct {
@@ -15,7 +16,7 @@ type Redis struct {
 
 type Kafka struct {
 	Broker string `yaml:"broker"`
-	Topic string `yaml:"topic"`
+	Topic  string `yaml:"topic"`
 }
 
 type Web struct {
@@ -35,15 +36,15 @@ type Socket struct {
 }
 
 type Env struct {
-	Web Web `yaml:"web"`
-	Api Api `yaml:"api"`
-	Redis Redis `yaml:"redis"`
-	Kafka Kafka `yaml:"kafka"`
+	Web    Web    `yaml:"web"`
+	Api    Api    `yaml:"api"`
+	Redis  Redis  `yaml:"redis"`
+	Kafka  Kafka  `yaml:"kafka"`
 	Socket Socket `yaml:"socket"`
-	Pid string `yaml:"pid"`
+	Pid    string `yaml:"pid"`
 }
 
-func (conf * Env) Get(key string) interface{} {
+func (conf *Env) Get(key string) interface{} {
 	return conf.Redis
 }
 

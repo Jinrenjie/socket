@@ -51,7 +51,6 @@ func upgrade(response http.ResponseWriter, request *http.Request) (string, strin
 	}
 
 	fd := uuid.New().String()
-
 	Online(id, fd, connection.RemoteAddr().String(), platform, version)
 	return id, fd, connection, nil
 }
@@ -146,7 +145,7 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 				CreateDate: time.Now().Format("2006-01-02"),
 			})
 			connections.Delete(fd)
-			Offline(id, fd)
+			// Offline(id, fd)
 			break
 		}
 

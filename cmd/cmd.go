@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strconv"
+	"syscall"
 	"time"
 
 	"github.com/Jinrenjie/socket/api"
@@ -22,6 +23,91 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+// rootCmd represents the base command when called without any subcommands
+var rootCmd = &cobra.Command{
+	Use:   "socket",
+	Short: "Web Socket service",
+	Long:  "Instant Messaging service based on Golang implementation",
+	// Uncomment the following line if your bare application
+	// has an action associated with it:
+	//	Run: func(cmd *cobra.Command, args []string) { },
+}
+
+// versionCmd represents the version command
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Display this service version",
+	Long:  "Display this service version",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("version 1.0.1")
+	},
+}
+
+// stopCmd represents the stop command
+var stopCmd = &cobra.Command{
+	Use:   "stop",
+	Short: "Stop Web Socket service",
+	Long:  `Stop Web Socket service.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		runtime := viper.GetStringMapString("runtime")
+		path := runtime["pid"]
+		origin, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Fatal("ERR read pid file", err)
+		}
+		pid, err := strconv.Atoi(string(origin))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if err := syscall.Kill(int(pid), syscall.SIGKILL); err != nil {
+			log.Fatal("ERR stop service error", err)
+		}
+		if err := os.Remove(path); err != nil {
+			log.Fatal("ERR remove pid file", err)
+		}
+		fmt.Println("The service has stopped.")
+	},
+}
+
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
+
+func byte2Int(data []byte) int {
+	var ret = 0
+	var count = len(data)
+	var i uint = 0
+	for i = 0; i < uint(count); i++ {
+		ret = ret | (int(data[i]) << (i * 8))
+	}
+	return ret
+}
+
+func init() {
+	cobra.OnInitialize(initConfig)
+	rootCmd.AddCommand(startCmd)
+	rootCmd.AddCommand(stopCmd)
+	rootCmd.AddCommand(versionCmd)
+	// Here you will define your flags and configuration settings.
+
+	// Cobra supports Persistent Flags which will work for this command
+	// and all subcommands, e.g.:
+	// startCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	// Cobra supports local flags which will only run when this command
+	// is called directly, e.g.:
+	startCmd.Flags().StringVarP(&confFile, "config", "c", ".socket.yaml", "defien runtime config file path")
+	startCmd.Flags().BoolP("web-ui", "u", false, "Enable managerment web ui")
+	startCmd.Flags().BoolVarP(&daemon, "daemon", "d", false, "Start the service as a daemon")
+	startCmd.Flags().BoolVarP(&ssl, "ssl", "s", false, "Start service on ssl connection")
+}
 
 var (
 	ssl      bool
@@ -57,23 +143,6 @@ var startCmd = &cobra.Command{
 		}
 		startService()
 	},
-}
-
-func init() {
-	cobra.OnInitialize(initConfig)
-	rootCmd.AddCommand(startCmd)
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// startCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	startCmd.Flags().StringVarP(&confFile, "config", "c", ".socket.yaml", "defien runtime config file path")
-	startCmd.Flags().BoolP("web-ui", "u", false, "Enable managerment web ui")
-	startCmd.Flags().BoolVarP(&daemon, "daemon", "d", false, "Start the service as a daemon")
-	startCmd.Flags().BoolVarP(&ssl, "ssl", "s", false, "Start service on ssl connection")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -142,7 +211,6 @@ func startService() {
 
 	//http.Handle("/", http.FileServer(http.Dir("web")))
 	socketAddr := fmt.Sprintf("%v:%v", web["host"], web["port"])
-
 	fmt.Printf("Web service listen on %v \n", socketAddr)
 	if ssl {
 		sslConf := viper.GetStringMapString("ssl")
@@ -164,7 +232,7 @@ func bootstrap() {
 		db = 1
 	}
 	database.CreateRedisPool(redisAddr, redisConf["pass"], db)
-	clear()
+	// clear()
 }
 
 func clear() {
@@ -183,9 +251,6 @@ func clear() {
 	}()
 	if _, err := redis.String(connection.Do("FLUSHDB")); err != nil {
 		panic(err)
-	}
-	if err := connection.Close(); err != nil {
-		fmt.Println(err)
 	}
 }
 
