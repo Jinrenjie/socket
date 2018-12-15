@@ -103,7 +103,7 @@ func Connections(writer http.ResponseWriter, request *http.Request, params denco
 	connection := database.Pool.Get()
 	defer func() {
 		if err := connection.Close(); err != nil {
-			logs.OutPut("api", "api", "close-redis-connection", err.Error())
+			logs.OutPut("ERROR", "close-redis-connection", err.Error())
 		}
 	}()
 	origin := request.URL.Query()

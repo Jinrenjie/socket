@@ -11,14 +11,14 @@ import (
 )
 
 type Payload struct {
-	Uid        string      `json:"uid"`
-	Fd         string      `json:"fd"`
-	Type       string      `json:"type"`
-	Body       interface{} `json:"body"`
-	CreateTime int64       `json:"create_time"`
-	CreateDate string      `json:"create_date"`
-	encoded    []byte
-	err        error
+	Service  string `json:"service"`
+	Node     string `json:"node"`
+	Level    string `json:"level"`
+	Type     string `json:"type"`
+	Body     string `json:"body"`
+	CreateAt int64  `json:"create_at"`
+	encoded  []byte
+	err      error
 }
 
 var (
@@ -98,18 +98,18 @@ func logKafka(content *Payload) {
 	}
 	producer.Input() <- &sarama.ProducerMessage{
 		Topic: topic,
-		Key:   sarama.StringEncoder(content.Uid),
+		Key:   sarama.StringEncoder(content.Service),
 		Value: content,
 	}
 }
 
-func OutPut(id, fd, ty, body string) {
+func OutPut(level, ty, body string) {
 	Save(&Payload{
-		Uid:        id,
-		Fd:         fd,
-		Type:       ty,
-		Body:       body,
-		CreateTime: time.Now().Unix(),
-		CreateDate: time.Now().Format("2006-01-02"),
+		Service:  "im",
+		Node:     "",
+		Level:    level,
+		Type:     ty,
+		Body:     body,
+		CreateAt: time.Now().Unix(),
 	})
 }

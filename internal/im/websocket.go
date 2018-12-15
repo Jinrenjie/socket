@@ -4,13 +4,13 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
 	"net/url"
 	"reflect"
 	"strings"
 	"sync"
-	"time"
 
 	"github.com/Jinrenjie/socket/internal/logs"
 	"github.com/google/uuid"
@@ -96,7 +96,7 @@ func bind(request *http.Request) (id, version, platform string, err error) {
 func Handle(response http.ResponseWriter, request *http.Request, params denco.Params) {
 	id, fd, connection, err := upgrade(response, request)
 	if err != nil {
-		log.Printf("upgrade error %v", err)
+		logs.OutPut("ERROR", "CONNECTION-HANDSHAKE", err.Error())
 		response.WriteHeader(422)
 		return
 	}
@@ -109,14 +109,7 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 		}
 	}()
 
-	logs.Save(&logs.Payload{
-		Uid:        id,
-		Fd:         fd,
-		Type:       "connection",
-		Body:       "Connected",
-		CreateTime: time.Now().Unix(),
-		CreateDate: time.Now().Format("2006-01-02"),
-	})
+	logs.OutPut("INFO", "CONNECTION-BINDING", fmt.Sprintf("id:%v, fd:%v", id, fd))
 
 	// Register our new client
 	connections.Store(fd, connection)
@@ -136,7 +129,7 @@ func Handle(response http.ResponseWriter, request *http.Request, params denco.Pa
 		// Read in a new message as JSON and map it to a Message object
 		_, _, err := connection.ReadMessage()
 		if err != nil {
-			logs.OutPut(id, fd, "connection", "Disconnected")
+			logs.OutPut("ERROR", "CONNECTION-CLOSED", "Disconnected")
 			connections.Delete(fd)
 			// Offline(id, fd)
 			break
@@ -165,9 +158,9 @@ func DeliverMessage(id string, message []byte) []DeliverResult {
 			if err := connection.WriteMessage(websocket.TextMessage, message); err != nil {
 				client.Status = "failure"
 				log.Printf("send message error %v", err)
-				logs.OutPut(id, fd, "deliver", err.Error())
+				logs.OutPut("ERROR", "deliver", err.Error())
 			} else {
-				logs.OutPut(id, fd, "deliver", "success")
+				logs.OutPut("INFO", "deliver", "success")
 				client.Status = "success"
 			}
 			result = append(result, client)

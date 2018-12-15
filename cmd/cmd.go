@@ -10,7 +10,6 @@ import (
 	"path/filepath"
 	"strconv"
 	"syscall"
-	"time"
 
 	"github.com/Jinrenjie/socket/api"
 	"github.com/Jinrenjie/socket/database"
@@ -239,14 +238,7 @@ func clear() {
 	connection := database.Pool.Get()
 	defer func() {
 		if err := connection.Close(); err != nil {
-			logs.Save(&logs.Payload{
-				Uid:        "",
-				Fd:         "",
-				Type:       "close-redis-connection",
-				Body:       err.Error(),
-				CreateTime: time.Now().Unix(),
-				CreateDate: time.Now().Format("2006-01-02"),
-			})
+			logs.OutPut("ERROR", "REDIS-CLEAR", err.Error())
 		}
 	}()
 	if _, err := redis.String(connection.Do("FLUSHDB")); err != nil {
